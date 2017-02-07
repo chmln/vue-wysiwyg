@@ -4,15 +4,15 @@ export default new Vue({
     template: `
         <form @submit.prevent="insertTable">
             <label>
-                "row count"
-                <input type="number" style="width: 60px" maxlength="2" min="2" max="10" v-model="rows">
+                rows
+                <input type="number" style="width: 60px" maxlength="2" min="2" v-model="rows">
             </label>
             <label>
-                "column count"
-                <input type="number" style="width: 60px" maxlength="2" min="2" max="10" v-model="cols">
+                cols
+                <input type="number" style="width: 60px" maxlength="2" min="2" v-model="cols">
             </label>
 
-            <button type="submit">Save</button>
+            <button type="submit">Insert</button>
         </form>
     `,
 
@@ -30,13 +30,7 @@ export default new Vue({
     },
     methods: {
         insertTable(){
-            if (this.rows < 2 || this.rows > 10) {
-                return;
-            }
-            if (this.cols < 2 || this.cols > 10) {
-                return;
-            }
-
+            // temp
             let table = "<table><tbody>"
             for (let i = 0; i < this.rows; i++) {
                 table += "<tr>";
