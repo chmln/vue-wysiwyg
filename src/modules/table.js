@@ -1,0 +1,55 @@
+const Vue = require("vue");
+
+export default new Vue({
+    template: `
+        <form @submit.prevent="insertTable">
+            <label>
+                "row count"
+                <input type="number" style="width: 60px" maxlength="2" min="2" max="10" v-model="rows">
+            </label>
+            <label>
+                "column count"
+                <input type="number" style="width: 60px" maxlength="2" min="2" max="10" v-model="cols">
+            </label>
+
+            <button type="submit">Save</button>
+        </form>
+    `,
+
+
+    data(){
+        return {
+            name: "table",
+            icon: "fa fa-table",
+            rows: 2,
+            cols: 2,
+            hasHead: false,
+            striped: false,
+            hover: false
+        }
+    },
+    methods: {
+        insertTable(){
+            if (this.rows < 2 || this.rows > 10) {
+                return;
+            }
+            if (this.cols < 2 || this.cols > 10) {
+                return;
+            }
+
+            let table = "<table><tbody>"
+            for (let i = 0; i < this.rows; i++) {
+                table += "<tr>";
+                for (let j = 0; j < this.cols; j++) {
+                    table += "<td style='padding: 8px; line-height: 1.42857; vertical-align: top; border: 1px solid #999'>&nbsp;</td>"
+                }
+                table += "</tr>";
+            }
+            table += "</tbody></table>";
+            
+            this.$emit("exec", "insertHTML", table);
+            //this.$parent.execCommand("insertHTML", table)
+        }
+    }
+});
+
