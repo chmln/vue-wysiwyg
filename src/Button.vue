@@ -1,10 +1,11 @@
 <template lang="pug">
 div(@click="exec", @exec="onExec(arguments[0])")
-	a
+	a(:class="'vw-btn-'+module.name")
 		i(:class="module.icon", v-if="module.icon")
 
 	.dashboard(
-		v-show="module.$mount && showDashboard", 
+		v-if="module.$mount",
+		v-show="showDashboard",
 		ref="dashboard"
 	)
 		div(ref="moduleDashboard")
@@ -41,7 +42,7 @@ export default {
 	},
 
 	mounted () {
-		if (this.module.$mount) {	
+		if (this.module.$mount) {
 			this.module.$on("exec", this.onExec);
 			this.module.$mount(this.$refs.moduleDashboard);
 		}
