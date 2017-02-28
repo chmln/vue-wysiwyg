@@ -1,4 +1,4 @@
-const Vue = require("vue");
+import Vue from "vue";
 
 export default new Vue({
     template: `
@@ -40,7 +40,7 @@ export default new Vue({
                 table += "</tr>";
             }
             table += "</tbody></table>";
-            
+
             this.$emit("exec", "insertHTML", table);
             //this.$parent.execCommand("insertHTML", table)
         }
