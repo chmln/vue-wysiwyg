@@ -1,9 +1,8 @@
 {
-  "name": "html-editor",
-  "version": "1.0.0",
+  "name": "vue-wysiwyg",
+  "version": "1.0.0-alpha",
   "description": "A Vue.js project",
-  "author": "Gregory <gregory.petrosyan@mail.utoronto.ca>",
-  "private": true,
+  "author": "Gregory <gregory.mkv@gmail.com>",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"

@@ -198,6 +198,8 @@ $offwhite = #f3f3f3
     min-height 150px
     padding 0.5em
     border 1px solid $offwhite
+    line-height 1.33
+    font-family inherit
 
     &[contenteditable=true]:empty:before
         content: attr(placeholder);
@@ -208,7 +210,7 @@ $offwhite = #f3f3f3
     &:focus
         outline 0
 
-    ol
+    ul, ol
         li
             list-style-position: inside;
 
