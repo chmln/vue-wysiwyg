@@ -5,7 +5,9 @@
             v-for="module in modules",
             :module="module",
             :key="module.name",
-            @exec="exec(arguments[0], arguments[1])"
+            @exec="exec(arguments[0], arguments[1])",
+            :ref="'btn-'+module.name",
+            :title="module.title || ''"
         )
 
     .editr--content(ref="content", contenteditable="true", tabindex="1", placeholder="Enter text...")
@@ -13,36 +15,131 @@
 </template>
 
 <script>
+import bus from "./bus.js";
+import debounce from "debounce";
 import Btn from "./Button.vue";
 
 import bold from "./modules/bold.js";
 import italic from "./modules/italic.js";
-import separator from "./modules/separator.js";
+import underline from "./modules/underline.js";
+
+import headings from "./modules/headings.js";
+import hyperlink from "./modules/hyperlink.js";
 import list_ordered from "./modules/list_ordered.js";
 import list_unordered from "./modules/list_unordered.js";
-import underline from "./modules/underline.js";
+
+import image from "./modules/image.js";
 import table from "./modules/table.js";
 
+import removeFormat from "./modules/removeFormat.js";
+
+import separator from "./modules/separator.js";
+
+const modules = [
+    bold, italic, underline, separator,
+    headings, hyperlink,
+    list_ordered, list_unordered, separator,
+    image, table, separator,
+    removeFormat
+];
+
 export default {
-    components: {
-        Btn
+    props: {
+        html: {
+            type: String,
+            default: ""
+        }
     },
+
+    components: { Btn  },
 
     data () {
         return {
-            modules: [
-                bold, italic, underline, separator,
-                list_ordered, list_unordered, separator,
-                 table
-            ]
+            selection: ""
+        }
+    },
+
+    computed: {
+        modules: function() {
+            if (bus.options.hideModules)
+                return modules.filter(m => !bus.options.hideModules[m.name]);
+            return modules;
+        },
+
+        btnsWithDashboards: function () {
+            if (this.modules)
+                return this.modules.filter(m => m.$mount);
+            return [];
+        },
+
+        innerHTML: {
+            get () {
+                return this.$refs.content.innerHTML;
+            },
+
+            set (html) {
+                if (this.innerHTML !== html) {
+                    this.$refs.content.innerHTML = html;
+                }
+            }
         }
     },
 
     methods: {
+        saveSelection() {
+            if (window.getSelection) {
+                this.selection = window.getSelection();
+                if (this.selection.getRangeAt && this.selection.rangeCount) {
+                    return this.selection.getRangeAt(0);
+                }
+            } else if (document.selection && document.selection.createRange) {
+                return document.selection.createRange();
+            }
+            return null;
+        },
+
+        restoreSelection(range) {
+            if (range) {
+                if (window.getSelection) {
+                    this.selection = window.getSelection();
+                    this.selection.removeAllRanges();
+                    this.selection.addRange(range);
+                }
+                else if (document.selection && range.select)
+                    range.select();
+            }
+        },
+
         exec: function(cmd, arg){
             this.$refs.content.focus();
             document.execCommand(cmd, false, arg||"");
-        }
+
+
+            this.$nextTick(() => {
+                this.$emit("html", this.$refs.content.innerHTML);
+            });
+        },
+
+        onDocumentClick (e) {
+            for (let i = 0; i < this.btnsWithDashboards.length; i++) {
+                const btn = this.$refs[`btn-${this.btnsWithDashboards[i].name}`][0];
+                if (btn && btn.showDashboard && !btn.$el.contains(e.target))
+                    btn.closeDashboard();
+            }
+        },
+
+        onInput: debounce(function (e){
+            this.$emit("html", this.$refs.content.innerHTML);
+        }, 300)
+    },
+
+    mounted () {
+        this.exec("insertBrOnReturn", "true");
+        if (this.html)
+            this.innerHTML = this.html;
+
+        this.$refs.content.addEventListener("input", this.onInput);
+        document.addEventListener("click", this.onDocumentClick);
     }
 }
 </script>
@@ -68,6 +165,9 @@ $offwhite = #f3f3f3
 
         &:hover
             background alpha(black, 0.1)
+
+        &:active
+            background alpha(black, 0.2)
 
         &.vw-btn-separator
             width 1px

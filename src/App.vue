@@ -1,6 +1,6 @@
 <template lang="pug">
 .wrapper
-  Editr
+  Editr(:html="msg", @html="newHTML => msg = newHTML")
 </template>
 
 <script>
