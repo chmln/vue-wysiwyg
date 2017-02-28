@@ -1,5 +1,5 @@
 <template lang="pug">
-div(@click="exec", @exec="onExec(arguments[0])")
+div(@mousedown="onBtnClick", @exec="onExec(arguments[0])")
 	a(:class="'vw-btn-'+module.name")
 		i(:class="module.icon", v-if="module.icon")
 
@@ -12,6 +12,8 @@ div(@click="exec", @exec="onExec(arguments[0])")
 
 </template>
 <script>
+import bus from "./bus.js";
+
 export default {
 	props: ["module"],
 
@@ -22,20 +24,36 @@ export default {
 	},
 
 	methods: {
-		exec($event, action, arg) {
+		closeDashboard () {
+			this.showDashboard = false;
+		},
+
+		openDashboard () {
+			this.showDashboard = true;
+		},
+
+		onBtnClick($event, action, arg) {
+			$event.preventDefault();
+
+			this.$parent.saveSelection();
+			if (
+				this.module.$mount &&
+				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
+			) {
+				this.showDashboard = !this.showDashboard;
+				bus.$emit((this.showDashboard ? "show" : "hide") + "_dashboard_" + this.module.name);
+				return;
+			}
+
 			action = action || this.module.action;
+			arg = arg || this.module.actionArgs;
 
 			if (action)
 				this.$parent.exec(action, arg);
-
-			else if (
-				this.module.$mount && $event &&
-				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
-			)
-				this.showDashboard = !this.showDashboard;
 		},
 
 		onExec (cmd, args) {
+			this.$parent.restoreSelection();
 			this.$emit('exec', cmd, args);
 			this.showDashboard = false;
 		}
