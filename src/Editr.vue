@@ -139,7 +139,6 @@ export default {
         }, 300),
 
         syncHTML () {
-            console.log("syncing", this.html, this.$refs.content.innerHTML)
             if (this.html !== this.$refs.content.innerHTML)
                 this.innerHTML = this.html;
             
