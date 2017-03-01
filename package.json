@@ -1,6 +1,6 @@
 {
   "name": "vue-wysiwyg",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "description": "A Vue.js project",
   "author": "Gregory <gregory.mkv@gmail.com>",
   "main": "src/index.js",
@@ -11,7 +11,7 @@
   "dependencies": {
     "debounce": "^1.0.0",
     "font-awesome": "^4.7.0",
-    "vue": "^2.1.10",
+    "vue": "^2.2.1",
     "vue2-dropzone": "^2.0.0"
   },
   "devDependencies": {
