@@ -1,30 +1,35 @@
+<template>
+    <dropzone
+        :id="_uid + 'vwdropzone'"
+        :url="uploadURL"
+        :useFontAwesome="true"
+        @vdropzone-success="fileUploaded"
+        @vdropzone-file-added="fileAdded"
+        >
+    </dropzone>
+</template>
+
+<script>
 const Vue = require("vue");
 import Dropzone from 'vue2-dropzone';
 import bus from "../bus.js";
 
-export default new Vue({
+export default {
+    name: "image",
+    icon: "fa fa-image",
+
     components: {
         Dropzone
     },
-    template: `
-        <dropzone
-            id="vwdropzone"
-            :url="uploadURL"
-            :useFontAwesome="true"
-            @vdropzone-success="fileUploaded"
-            @vdropzone-file-added="fileAdded"
-            >
-        </dropzone>
-    `,
 
-
-    data(){
-        return {
-            name: "image",
-            icon: "fa fa-image",
-            uploadURL:  "/"
+    computed: {
+        uploadURL () {
+            return bus.options.image 
+                ? bus.options.image.uploadURL
+                : null;
         }
     },
+    
     methods: {
         fileUploaded (file, r) {
             if (r)
@@ -33,7 +38,7 @@ export default new Vue({
 
         fileAdded(file){
             // if no upload url is defined, insert image with base64 src
-            if (!file || this.uploadURL !== "/")
+            if (!file || !this.uploadURL)
                 return;
 
             let reader = new FileReader();
@@ -44,13 +49,7 @@ export default new Vue({
 
             reader.readAsDataURL(file);
         }
-    },
-
-    created () {
-        bus.$on("newOptions", newOptions => {
-            if (newOptions && newOptions.image)
-                this.$set(this.$data, "uploadURL", newOptions.image.uploadURL || "/");
-        });
     }
-});
+}
+</script>
 

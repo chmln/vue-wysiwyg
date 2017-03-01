@@ -1,31 +1,27 @@
-import Vue from "vue";
+<template>
+    <form @submit.prevent="insertTable">
+        <label>
+            rows
+            <input type="number" style="width: 60px" maxlength="2" min="2" v-model="rows">
+        </label>
+        <label>
+            cols
+            <input type="number" style="width: 60px" maxlength="2" min="2" v-model="cols">
+        </label>
 
-export default new Vue({
-    template: `
-        <form @submit.prevent="insertTable">
-            <label>
-                rows
-                <input type="number" style="width: 60px" maxlength="2" min="2" v-model="rows">
-            </label>
-            <label>
-                cols
-                <input type="number" style="width: 60px" maxlength="2" min="2" v-model="cols">
-            </label>
+        <button type="submit">Insert</button>
+    </form>
+</template>
 
-            <button type="submit">Insert</button>
-        </form>
-    `,
-
+<script>
+export default {
+    name: "table",
+    icon: "fa fa-table",
 
     data(){
         return {
-            name: "table",
-            icon: "fa fa-table",
             rows: 2,
-            cols: 2,
-            hasHead: false,
-            striped: false,
-            hover: false
+            cols: 2
         }
     },
     methods: {
@@ -45,5 +41,6 @@ export default new Vue({
             //this.$parent.execCommand("insertHTML", table)
         }
     }
-});
+};
 
+</script>
