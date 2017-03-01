@@ -4,11 +4,10 @@ div(@mousedown="onBtnClick", @exec="onExec(arguments[0])")
 		i(:class="module.icon", v-if="module.icon")
 
 	.dashboard(
-		v-if="module.$mount",
 		v-show="showDashboard",
 		ref="dashboard"
 	)
-		div(ref="moduleDashboard")
+		component(v-if="module.render", v-once, ref="moduleDashboard", :is="module")
 
 </template>
 <script>
@@ -37,7 +36,7 @@ export default {
 
 			this.$parent.saveSelection();
 			if (
-				this.module.$mount &&
+				this.module.render &&
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
 			) {
 				this.showDashboard = !this.showDashboard;
@@ -56,13 +55,6 @@ export default {
 			this.$parent.restoreSelection();
 			this.$emit('exec', cmd, args);
 			this.showDashboard = false;
-		}
-	},
-
-	mounted () {
-		if (this.module.$mount) {
-			this.module.$on("exec", this.onExec);
-			this.module.$mount(this.$refs.moduleDashboard);
 		}
 	}
 }
