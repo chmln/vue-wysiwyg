@@ -2,7 +2,13 @@ import Vue from 'vue';
 export default  new Vue({
 	data () {
 		return {
-			options: {}
+			options: {
+				image: {
+					uploadURL: ""
+				},
+
+				hiddenModules: []
+			}
 		};
 	}
 });
