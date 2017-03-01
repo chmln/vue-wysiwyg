@@ -10,7 +10,7 @@
             :title="module.title || ''"
         )
 
-    .editr--content(ref="content", contenteditable="true", tabindex="1", placeholder="Enter text...")
+    .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
 
 </template>
 
@@ -23,13 +23,13 @@ import bold from "./modules/bold.js";
 import italic from "./modules/italic.js";
 import underline from "./modules/underline.js";
 
-import headings from "./modules/headings.js";
+import headings from "./modules/headings.vue";
 import hyperlink from "./modules/hyperlink.js";
 import list_ordered from "./modules/list_ordered.js";
 import list_unordered from "./modules/list_unordered.js";
 
-import image from "./modules/image.js";
-import table from "./modules/table.js";
+import image from "./modules/image.vue";
+import table from "./modules/table.vue";
 
 import removeFormat from "./modules/removeFormat.js";
 
@@ -53,7 +53,11 @@ export default {
         html: {
             type: String,
             default: ""
-        }
+        },
+        placeholder: {
+            type: String,
+            default: "Enter text..."
+        },
     },
 
 
@@ -74,7 +78,7 @@ export default {
 
         btnsWithDashboards: function () {
             if (this.modules)
-                return this.modules.filter(m => m.$mount);
+                return this.modules.filter(m => m.render);
             return [];
         },
 
