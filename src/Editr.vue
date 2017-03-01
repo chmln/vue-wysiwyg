@@ -44,12 +44,18 @@ const modules = [
 ];
 
 export default {
+    model: {
+        prop: "html",
+        event: "html"
+    },
+
     props: {
         html: {
             type: String,
             default: ""
         }
     },
+
 
     components: { Btn  },
 
@@ -130,13 +136,20 @@ export default {
 
         onInput: debounce(function (e){
             this.$emit("html", this.$refs.content.innerHTML);
-        }, 300)
+        }, 300),
+
+        syncHTML () {
+            console.log("syncing", this.html, this.$refs.content.innerHTML)
+            if (this.html !== this.$refs.content.innerHTML)
+                this.innerHTML = this.html;
+            
+            if (this.unWatch)
+                this.unWatch();
+        }
     },
 
     mounted () {
-        this.exec("insertBrOnReturn", "true");
-        if (this.html)
-            this.innerHTML = this.html;
+        this.unWatch = this.$watch("html", this.syncHTML, { immediate: true});
 
         this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
