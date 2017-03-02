@@ -162,10 +162,14 @@ export default {
 
 <style lang="stylus">
 @import "~font-awesome/css/font-awesome.css";
-$offwhite = #f3f3f3
+$offwhite = #f6f6f6
+
+.editr
+    border 1px solid darken($offwhite, 5%)
 
 .editr--toolbar
-    background #f6f6f6
+    background $offwhite
+    border-bottom 1px solid darken($offwhite, 5%)
     position relative
     display flex
     height 32px
@@ -213,7 +217,6 @@ $offwhite = #f3f3f3
 .editr--content
     min-height 150px
     padding 0.5em
-    border 1px solid $offwhite
     line-height 1.33
     font-family inherit
 
@@ -225,6 +228,7 @@ $offwhite = #f3f3f3
 
     &:focus
         outline 0
+
 
     ul, ol
         li
