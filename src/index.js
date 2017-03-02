@@ -5,7 +5,6 @@ export default {
 	install: (Vue, options) => {
 		Vue.component("Editr", Editr);
 		bus.$set(bus.$data, "options", options);
-		bus.$emit("newOptions", options);
 	}
 
 }
