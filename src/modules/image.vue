@@ -5,6 +5,7 @@
         :useFontAwesome="true"
         @vdropzone-success="fileUploaded"
         @vdropzone-file-added="fileAdded"
+        ref="dropzone"
         >
     </dropzone>
 </template>
@@ -49,6 +50,10 @@ export default {
 
             reader.readAsDataURL(file);
         }
+    },
+
+    beforeDestroy() {
+        this.$refs.dropzone.dropzone.destroy();
     }
 }
 </script>
