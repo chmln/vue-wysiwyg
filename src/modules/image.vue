@@ -12,7 +12,7 @@
 
 <script>
 const Vue = require("vue");
-import Dropzone from 'vue2-dropzone';
+import Dropzone from '../../../vue-dropzone/src/index.vue';
 import bus from "../bus.js";
 
 export default {
@@ -50,10 +50,6 @@ export default {
 
             reader.readAsDataURL(file);
         }
-    },
-
-    beforeDestroy() {
-        this.$refs.dropzone.dropzone.destroy();
     }
 }
 </script>
