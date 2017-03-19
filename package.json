@@ -1,6 +1,6 @@
 {
   "name": "vue-wysiwyg",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A Vue.js project",
   "author": "Gregory <gregory.mkv@gmail.com>",
   "main": "src/index.js",
