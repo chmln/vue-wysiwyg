@@ -12,7 +12,7 @@
 
 <script>
 const Vue = require("vue");
-import Dropzone from 'vue-dropzone';
+import Dropzone from 'vue2-dropzone';
 import bus from "../bus.js";
 
 export default {
