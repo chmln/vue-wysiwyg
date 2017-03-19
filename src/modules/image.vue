@@ -12,7 +12,7 @@
 
 <script>
 const Vue = require("vue");
-import Dropzone from '../../../vue-dropzone/src/index.vue';
+import Dropzone from 'vue-dropzone';
 import bus from "../bus.js";
 
 export default {
@@ -25,12 +25,12 @@ export default {
 
     computed: {
         uploadURL () {
-            return bus.options.image 
+            return bus.options.image
                 ? bus.options.image.uploadURL
                 : null;
         }
     },
-    
+
     methods: {
         fileUploaded (file, r) {
             if (r)
