@@ -161,27 +161,32 @@ export default {
 </script>
 
 <style lang="stylus">
-@import "~font-awesome/css/font-awesome.css";
 $offwhite = #f6f6f6
+$buttonWidth = 8vw
+$buttonHeight = 32px
+$svgSize = 16px
 
 .editr
     border 1px solid darken($offwhite, 5%)
+    width 100%
 
 .editr--toolbar
     background $offwhite
     border-bottom 1px solid darken($offwhite, 5%)
     position relative
     display flex
-    height 32px
+    height $buttonHeight
 
     a
         display inline-block
-        width 32px
-        height 32px
+        width $buttonWidth
+        max-width 32px
+        height $buttonHeight
         color #333
+        fill #333
         cursor pointer
         text-align center
-        line-height 32px
+        line-height 1
 
         &:hover
             background alpha(black, 0.1)
@@ -189,9 +194,18 @@ $offwhite = #f6f6f6
         &:active
             background alpha(black, 0.2)
 
+        svg
+            width $svgSize
+            height $svgSize
+            margin (($buttonHeight - $svgSize)/2) auto
+
+            path
+                fill inherit
+
         &.vw-btn-separator
             width 1px
             margin 0 10px
+
             &:hover
                 background initial
                 cursor default

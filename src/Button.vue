@@ -1,7 +1,6 @@
 <template lang="pug">
 div(@mousedown="onBtnClick", @exec="onExec(arguments[0])")
-	a(:class="'vw-btn-'+module.name")
-		i(:class="module.icon", v-if="module.icon")
+	a(:class="'vw-btn-'+module.name", v-html="module.icon")
 
 	.dashboard(
 		v-show="showDashboard",
