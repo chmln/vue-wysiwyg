@@ -1,13 +1,13 @@
 {
   "name": "vue-wysiwyg",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "A WYSIWYG HTML editor for Vue.js",
   "keywords": [
     "vue",
     "vue2",
     "wysiwyg",
     "html",
-    "editor"    
+    "editor"
   ],
   "author": "Gregory <gregory.mkv@gmail.com>",
   "license": "MIT",
