@@ -1,17 +1,25 @@
 {
   "name": "vue-wysiwyg",
   "version": "1.0.9",
-  "description": "A Vue.js project",
+  "description": "A WYSIWYG HTML editor for Vue.js",
+  "keywords": [
+    "vue",
+    "vue2",
+    "wysiwyg",
+    "html",
+    "editor"    
+  ],
   "author": "Gregory <gregory.mkv@gmail.com>",
+  "license": "MIT",
   "main": "src/index.js",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"
   },
   "dependencies": {
-    "debounce": "^1.0.0",
-    "vue": "^2.2.6",
-    "vue2-dropzone": "^2.2.5"
+    "debounce": "latest",
+    "vue": "latest",
+    "vue2-dropzone": "latest"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
