@@ -156,6 +156,8 @@ export default {
 
         this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
+
+        bus.$on("exec", this.exec);
     }
 }
 </script>

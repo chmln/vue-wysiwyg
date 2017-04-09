@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import bus from "src/bus.js";
 
 export default {
     name: "header",
@@ -14,7 +15,8 @@ export default {
 
     methods: {
         insertHeading(e){
-            this.$emit("exec", "formatBlock", e.target.textContent);
+            this.$parent.closeDashboard();
+            bus.$emit("exec", "formatBlock", e.target.textContent);
         }
     }
 };
