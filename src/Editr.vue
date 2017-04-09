@@ -24,7 +24,7 @@ import italic from "./modules/italic.js";
 import underline from "./modules/underline.js";
 
 import headings from "./modules/headings.vue";
-import hyperlink from "./modules/hyperlink.js";
+import hyperlink from "./modules/hyperlink.vue";
 import list_ordered from "./modules/list_ordered.js";
 import list_unordered from "./modules/list_unordered.js";
 
@@ -145,7 +145,7 @@ export default {
         syncHTML () {
             if (this.html !== this.$refs.content.innerHTML)
                 this.innerHTML = this.html;
-            
+
             if (this.unWatch)
                 this.unWatch();
         }
@@ -241,10 +241,11 @@ $svgSize = 16px
         color alpha(black, 0.3)
         display: block; /* For Firefox */
 
+    img
+        max-width 100%
 
     &:focus
         outline 0
-
 
     ul, ol
         li
