@@ -12,7 +12,7 @@ Vue.use(Editr, {}); // config is optional. more below
 ```
 In your components:
 ```html
-<Editr :html="myHTML" @html="newHTML => myHTML = newHTML" />
+<Editr v-model="myHTML" />
 ```
 
 ## Config options
