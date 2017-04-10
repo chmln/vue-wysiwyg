@@ -1,0 +1,102 @@
+
+* {
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  max-width: 800px;
+  margin: 10em auto;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+.editr {
+  border: 1px solid #eaeaea;
+  width: 100%;
+}
+.editr--toolbar {
+  background: #f6f6f6;
+  border-bottom: 1px solid #eaeaea;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  height: 32px;
+}
+.editr--toolbar a {
+  display: inline-block;
+  width: 8vw;
+  max-width: 32px;
+  height: 32px;
+  color: #333;
+  fill: #333;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1;
+}
+.editr--toolbar a:hover {
+  background: rgba(0,0,0,0.1);
+}
+.editr--toolbar a:active {
+  background: rgba(0,0,0,0.2);
+}
+.editr--toolbar a svg {
+  width: 16px;
+  height: 16px;
+  margin: 8px auto;
+}
+.editr--toolbar a svg path {
+  fill: inherit;
+}
+.editr--toolbar a.vw-btn-separator {
+  width: 1px;
+  margin: 0 10px;
+}
+.editr--toolbar a.vw-btn-separator:hover {
+  background: initial;
+  cursor: default;
+}
+.editr--toolbar a.vw-btn-separator i {
+  border-left: 1px solid rgba(0,0,0,0.1);
+  height: 100%;
+  position: absolute;
+  width: 1px;
+}
+.editr--toolbar .dashboard {
+  width: 100%;
+  position: absolute;
+  top: 32px;
+  left: 0;
+  text-align: left;
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #f6f6f6;
+}
+.editr--content {
+  min-height: 150px;
+  padding: 0.5em;
+  line-height: 1.33;
+  font-family: inherit;
+}
+.editr--content[contenteditable=true]:empty:before {
+  content: attr(placeholder);
+  color: rgba(0,0,0,0.3);
+  display: block; /* For Firefox */
+}
+.editr--content img {
+  max-width: 100%;
+}
+.editr--content:focus {
+  outline: 0;
+}
+.editr--content ul li,
+.editr--content ol li {
+  list-style-position: inside;
+}
+/*# sourceMappingURL=app.311d0fae9fdf6e2c96dcf0194613ac83.css.map*/
