@@ -1327,7 +1327,7 @@ de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
 
-debounce@^1.0.0:
+debounce@latest:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.0.0.tgz#0948af513d2e4ce407916f8506a423d3f9cf72d8"
   dependencies:
@@ -3963,14 +3963,14 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.1.tgz#0c36cc57aa3a9ec13e846342cb14a72fcac8bd93"
 
-vue2-dropzone@^2.2.5:
+vue2-dropzone@latest:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-2.2.5.tgz#3190fa2d9ca9c4181bf56f87af1a9f0bd2c34cee"
   dependencies:
     dropzone "^4.3.0"
     vue "^2.0.0"
 
-vue@^2.0.0, vue@^2.2.6:
+vue@^2.0.0, vue@latest:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.2.6.tgz#451714b394dd6d4eae7b773c40c2034a59621aed"
 
