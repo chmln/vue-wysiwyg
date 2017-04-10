@@ -7,8 +7,8 @@
 In your `main.js`:
 
 ```js
-import Editr from "./index.js";
-Vue.use(Editr, {}); // config is optional. more below
+import wysiwyg from "vue-wysiwyg";
+Vue.use(wysiwyg, {}); // config is optional. more below
 ```
 In your components:
 ```html
