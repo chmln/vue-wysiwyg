@@ -1,6 +1,6 @@
 <template lang="pug">
 .wrapper
-  Editr(v-model="msg")
+  wysiwyg(v-model="msg")
 </template>
 
 <script>

@@ -25,9 +25,7 @@ export default {
 
     computed: {
         uploadURL () {
-            return bus.options.image
-                ? bus.options.image.uploadURL
-                : "None";
+            return bus.options.image.uploadURL;
         }
     },
 

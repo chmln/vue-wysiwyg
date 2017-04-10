@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-import Editr from "./index.js";
-Vue.use(Editr, {});
+import wysiwyg from "./index.js";
+Vue.use(wysiwyg, {});
 
 new Vue({
   el: '#app',

@@ -4,7 +4,7 @@ export default  new Vue({
 		return {
 			options: {
 				image: {
-					uploadURL: ""
+					uploadURL: "None"
 				},
 
 				hiddenModules: []
