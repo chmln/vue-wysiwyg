@@ -13,7 +13,7 @@
 
 <script>
 import dropzone from 'vue2-dropzone';
-import bus from "src/bus.js";
+import bus from "../bus.js";
 
 export default {
     name: "image",

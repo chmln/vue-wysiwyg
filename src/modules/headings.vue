@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import bus from "src/bus.js";
+import bus from "../bus.js";
 
 export default {
     name: "header",
