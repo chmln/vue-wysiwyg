@@ -169,12 +169,12 @@ $buttonHeight = 32px
 $svgSize = 16px
 
 .editr
-    border 1px solid darken($offwhite, 5%)
+    border 1px solid darken($offwhite, 7.5%)
     width 100%
 
 .editr--toolbar
     background $offwhite
-    border-bottom 1px solid darken($offwhite, 5%)
+    border-bottom 1px solid darken($offwhite, 7.5%)
     position relative
     display flex
     height $buttonHeight
@@ -232,9 +232,10 @@ $svgSize = 16px
 
 .editr--content
     min-height 150px
-    padding 0.5em
+    padding 0.75rem 0.5rem
     line-height 1.33
     font-family inherit
+    color inherit
 
     &[contenteditable=true]:empty:before
         content: attr(placeholder);
@@ -243,6 +244,12 @@ $svgSize = 16px
 
     img
         max-width 100%
+    
+    table
+        width 100%
+
+        th
+            text-align left
 
     &:focus
         outline 0
