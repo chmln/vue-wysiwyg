@@ -10,9 +10,10 @@ In your `main.js`:
 import wysiwyg from "vue-wysiwyg";
 Vue.use(wysiwyg, {}); // config is optional. more below
 ```
+
 In your components:
 ```html
-<Editr v-model="myHTML" />
+<wysiwyg v-model="myHTML" />
 ```
 
 ## Config options
