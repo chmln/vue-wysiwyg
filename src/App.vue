@@ -8,7 +8,44 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: `<p>Welcome to <b>vue-wysiwyg</b>!</p>
+      <p>
+        <br>
+        <img src="https://az616578.vo.msecnd.net/files/2016/10/01/6361089356481199681182863541_horse%20riding%20POV.gif">
+      </p>
+      <br>
+      <p>
+        The editor is quite fast and lightweight. Elements are minimally styled.
+      </p>
+      <br>
+      <p>
+      <table>
+        <thead>
+        <tr>
+          <th>Numbered lists:</th>
+          <th>Non-numbered lists:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+        
+            <ol>
+              <li>Item #1</li>
+              <li>Item #2</li>
+            </ol>
+          </td>
+          <td>
+            <ul>
+              <li>Item #1</li>
+              <li>Item #2</li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+        </table>
+      </p>
+      `
     }
   }
 }
@@ -26,11 +63,22 @@ export default {
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+body {
+  font-family: -apple-system, 
+                BlinkMacSystemFont, 
+                "Segoe UI", 
+                Roboto, 
+                Oxygen-Sans, 
+                Ubuntu, 
+                Cantarell, 
+                "Helvetica Neue", 
+                sans-serif;
 }
 </style>
