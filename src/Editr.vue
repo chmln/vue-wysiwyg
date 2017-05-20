@@ -72,7 +72,7 @@ export default {
     computed: {
         modules: function() {
             if (bus.options.hideModules)
-                return modules.filter(m => !bus.options.hideModules[m.name]);
+                return modules.filter(m => !bus.options.hideModules.includes(m.name));
             return modules;
         },
 
