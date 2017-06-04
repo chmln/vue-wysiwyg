@@ -8,6 +8,9 @@
   "env": {
     "test": {
       "plugins": [ "istanbul" ]
+    },
+    "production": {
+      "presets": ["babili"]
     }
   }
 }
