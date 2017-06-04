@@ -11,7 +11,8 @@
   ],
   "author": "Gregory <gregory.mkv@gmail.com>",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "dist/vueWysiwyg.js",
+  "style": "dist/vueWysiwyg.css",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "rm -r dist/* || true && BABEL_ENV=production node build/build.js"
