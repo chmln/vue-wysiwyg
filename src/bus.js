@@ -6,7 +6,7 @@ emitter.options = {
         uploadURL: "None"
     },
 
-    hiddenModules: []
+    hideModules: {}
 }
 
 export default emitter;
