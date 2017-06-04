@@ -16,7 +16,7 @@ In your components:
 
 ```js
 {
-  hideModules: ["bold"],
+  hideModules: { "bold": true },
   image: {
     uploadURL: "/api/myEndpoint"
   }
