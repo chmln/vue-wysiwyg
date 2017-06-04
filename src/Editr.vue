@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import bus from "./bus.js";
+import bus from 'src/bus.js';
 import debounce from "debounce";
 import Btn from "./Button.vue";
 
@@ -121,6 +121,7 @@ export default {
         },
 
         exec: function(cmd, arg){
+            console.log("exec")
             this.$refs.content.focus();
             document.execCommand(cmd, false, arg||"");
 
@@ -157,7 +158,7 @@ export default {
         this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
 
-        bus.$on("exec", this.exec);
+        bus.on("exec", this.exec);
     }
 }
 </script>
@@ -244,7 +245,7 @@ $svgSize = 16px
 
     img
         max-width 100%
-    
+
     table
         width 100%
 

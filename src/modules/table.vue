@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import bus from "../bus.js";
+import bus from 'src/bus.js';
 
 export default {
     name: "table",
@@ -39,7 +39,7 @@ export default {
             }
             table += "</tbody></table>";
 
-            bus.$emit("exec", "insertHTML", table);
+            bus.emit("exec", "insertHTML", table);
             //this.$parent.execCommand("insertHTML", table)
         }
     }

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import bus from "../bus.js";
+import bus from 'src/bus.js';
 
 export default {
     name: "link",
@@ -30,14 +30,14 @@ export default {
     },
     methods: {
         insertLink(){
-            bus.$emit("exec", "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
+            bus.emit("exec", "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
             this.url = "";
             this.title = "";
         }
     },
 
     created () {
-        bus.$on("show_dashboard_link", () => {
+        bus.on("show_dashboard_link", () => {
             this.$nextTick(() => {
                 this.$refs.url.focus();
             });

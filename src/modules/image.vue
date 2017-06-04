@@ -13,7 +13,7 @@
 
 <script>
 import dropzone from 'vue2-dropzone';
-import bus from "../bus.js";
+import bus from 'src/bus.js';
 
 export default {
     name: "image",
@@ -32,7 +32,7 @@ export default {
     methods: {
         fileUploaded (file, r) {
             if (r)
-                bus.$emit("exec", "insertHTML", `<img src=${r}>`);
+                bus.emit("exec", "insertHTML", `<img src=${r}>`);
         },
 
         fileAdded(file){
@@ -43,7 +43,7 @@ export default {
             let reader = new FileReader();
 
             reader.addEventListener("load", () => {
-               bus.$emit("exec", "insertHTML", `<img src=${reader.result}>`);
+               bus.emit("exec", "insertHTML", `<img src=${reader.result}>`);
             }, false);
 
             reader.readAsDataURL(file);

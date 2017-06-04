@@ -1,15 +1,12 @@
-import Vue from 'vue';
-export default  new Vue({
-	data () {
-		return {
-			options: {
-				image: {
-					uploadURL: "None"
-				},
+import EventEmitter from 'wolfy87-eventemitter';
+const emitter = new EventEmitter();
 
-				hiddenModules: []
-			}
-		};
-	}
-});
+emitter.options = {
+    image: {
+        uploadURL: "None"
+    },
 
+    hiddenModules: []
+}
+
+export default emitter;

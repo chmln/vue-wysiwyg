@@ -10,7 +10,7 @@ div(@mousedown="onBtnClick", @exec="onExec(arguments[0])")
 
 </template>
 <script>
-import bus from "./bus.js";
+import bus from 'src/bus.js';
 
 export default {
 	props: ["module"],
@@ -39,7 +39,7 @@ export default {
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
 			) {
 				this.showDashboard = !this.showDashboard;
-				bus.$emit((this.showDashboard ? "show" : "hide") + "_dashboard_" + this.module.name);
+				bus.emit((this.showDashboard ? "show" : "hide") + "_dashboard_" + this.module.name);
 				return;
 			}
 
