@@ -121,10 +121,8 @@ export default {
         },
 
         exec: function(cmd, arg){
-            console.log("exec")
             this.$refs.content.focus();
             document.execCommand(cmd, false, arg||"");
-
 
             this.$nextTick(() => {
                 this.$emit("html", this.$refs.content.innerHTML);
