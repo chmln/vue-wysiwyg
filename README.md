@@ -7,6 +7,13 @@ import wysiwyg from "vue-wysiwyg";
 Vue.use(wysiwyg, {}); // config is optional. more below
 ```
 
+Also make sure to load the stylesheet.
+The exact syntax will depend on what preprocessor you use.
+
+```css
+@import "~vue-wysiwyg/dist/vueWysiwyg.css";
+```
+
 In your components:
 ```html
 <wysiwyg v-model="myHTML" />
