@@ -1,8 +1,8 @@
 <template>
     <div>
-        <button @click="insertHeading">H1</button>
-        <button @click="insertHeading">H2</button>
-        <button @click="insertHeading">H3</button>
+        <button type="button" @click="insertHeading">H1</button>
+        <button type="button" @click="insertHeading">H2</button>
+        <button type="button" @click="insertHeading">H3</button>
     </div>
 </template>
 
