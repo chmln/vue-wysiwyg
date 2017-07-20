@@ -31,19 +31,19 @@ export default {
 
     methods: {
         fileUploaded (file, r) {
-            if (r)
-                bus.emit("exec", "insertHTML", `<img src=${r}>`);
+            if (r) 
+                this.$emit("exec", "insertHTML", `<img src=${r}>`);
         },
 
-        fileAdded(file){
+        fileAdded (file) {
             // if no upload url is defined, insert image with base64 src
             if (file && this.uploadURL !== "None")
-                return this.$refs.dropzone.processQueue();
+                return;
 
             let reader = new FileReader();
 
             reader.addEventListener("load", () => {
-               bus.emit("exec", "insertHTML", `<img src=${reader.result}>`);
+               this.$emit("exec", "insertHTML", `<img src=${reader.result}>`);
             }, false);
 
             reader.readAsDataURL(file);
