@@ -6,7 +6,7 @@ div(@mousedown="onBtnClick", @exec="onExec(arguments[0])")
 		v-show="showDashboard",
 		ref="dashboard"
 	)
-		component(v-if="module.render", v-once, ref="moduleDashboard", :is="module")
+		component(v-if="module.render", v-once, ref="moduleDashboard", :is="module", @exec="onExec")
 
 </template>
 <script>
@@ -52,7 +52,7 @@ export default {
 
 		onExec (cmd, args) {
 			this.$parent.restoreSelection();
-			this.$emit('exec', cmd, args);
+			this.$parent.exec(cmd, args);
 			this.showDashboard = false;
 		}
 	}
