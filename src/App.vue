@@ -29,7 +29,7 @@ export default {
         <tbody>
         <tr>
           <td>
-        
+
             <ol>
               <li>Item #1</li>
               <li>Item #2</li>
@@ -71,14 +71,14 @@ export default {
 }
 
 body {
-  font-family: -apple-system, 
-                BlinkMacSystemFont, 
-                "Segoe UI", 
-                Roboto, 
-                Oxygen-Sans, 
-                Ubuntu, 
-                Cantarell, 
-                "Helvetica Neue", 
+  font-family: -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Oxygen-Sans,
+                Ubuntu,
+                Cantarell,
+                "Helvetica Neue",
                 sans-serif;
 }
 </style>
