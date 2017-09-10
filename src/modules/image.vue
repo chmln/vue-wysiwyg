@@ -6,6 +6,8 @@
         @vdropzone-success="fileUploaded"
         @vdropzone-file-added="fileAdded"
         :autoProcessQueue="uploadURL !== 'None'"
+        :dropzone-options="dropzoneOptions"
+        :use-custom-dropzone-options="true"
         ref="dropzone"
         >
     </dropzone>
@@ -26,6 +28,10 @@ export default {
     computed: {
         uploadURL () {
             return bus.options.image.uploadURL;
+        },
+
+        dropzoneOptions () {
+          return bus.options.image.dropzoneOptions || {}
         }
     },
 
@@ -49,12 +55,6 @@ export default {
             reader.readAsDataURL(file);
         }
     },
-
-    mounted () {
-      const dropzoneOptions = bus.options.image.dropzoneOptions || {};
-      for (const key in dropzoneOptions)
-        this.$refs.dropzone.setOption(key, dropzoneOptions[key]);
-    }
 }
 </script>
 
