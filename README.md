@@ -25,7 +25,8 @@ In your components:
 {
   hideModules: { "bold": true },
   image: {
-    uploadURL: "/api/myEndpoint"
+    uploadURL: "/api/myEndpoint",
+    dropzoneOptions: {}
   }
 }
 ```
