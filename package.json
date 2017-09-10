@@ -1,6 +1,6 @@
 {
   "name": "vue-wysiwyg",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A WYSIWYG HTML editor for Vue.js",
   "keywords": [
     "vue",
