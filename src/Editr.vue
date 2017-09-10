@@ -144,19 +144,20 @@ export default {
         syncHTML () {
             if (this.html !== this.$refs.content.innerHTML)
                 this.innerHTML = this.html;
-
-            if (this.unWatch)
-                this.unWatch();
         }
     },
 
     mounted () {
-        this.unWatch = this.$watch("html", this.syncHTML, { immediate: true});
+        this.unwatch = this.$watch("html", this.syncHTML, { immediate: true});
 
         this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
 
         bus.on("exec", this.exec);
+    },
+
+    beforeDestroy () {
+      this.unwatch();
     }
 }
 </script>
