@@ -3,7 +3,8 @@ const emitter = new EventEmitter();
 
 emitter.options = {
     image: {
-        uploadURL: "None"
+        uploadURL: "None",
+        dropzoneOptions: {}
     },
 
     hideModules: {}

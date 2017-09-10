@@ -31,7 +31,7 @@ export default {
 
     methods: {
         fileUploaded (file, r) {
-            if (r) 
+            if (r)
                 this.$emit("exec", "insertHTML", `<img src=${r}>`);
         },
 
@@ -48,6 +48,12 @@ export default {
 
             reader.readAsDataURL(file);
         }
+    },
+
+    mounted () {
+      const dropzoneOptions = bus.options.image.dropzoneOptions || {};
+      for (const key in dropzoneOptions)
+        this.$refs.dropzone.setOption(key, dropzoneOptions[key]);
     }
 }
 </script>
