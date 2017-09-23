@@ -1,6 +1,8 @@
-<template lang="pug">
-.wrapper
-  wysiwyg(v-model="msg")
+<template>
+<div>
+<wysiwyg v-model="msg"/>
+{{msg}}
+</div>
 </template>
 
 <script>
