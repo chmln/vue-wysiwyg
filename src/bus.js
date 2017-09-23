@@ -4,6 +4,7 @@ const emitter = new EventEmitter();
 emitter.options = {
     image: {
         uploadURL: "None",
+        imageResKey: "url",
         dropzoneOptions: {}
     },
 
