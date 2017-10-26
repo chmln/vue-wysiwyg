@@ -34,6 +34,7 @@ export default {
             bus.emit(`exec${name ? `_${name}` : ''}`, "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
             this.url = "";
             this.title = "";
+            bus.emit("hide_dashboard_link");
         },
         focusInput(elem) {
             if (this.focused) {
