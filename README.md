@@ -3,6 +3,18 @@
 
 ## Usage
 
+
+### Install vue-wysiwyg
+
+``` bash
+npm install vue-wysiwyg --save
+```
+OR
+
+``` bash
+yarn add vue-wysiwyg
+```
+
 In your `main.js`:
 
 ```js
