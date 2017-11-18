@@ -2,11 +2,11 @@
     <form @submit.prevent="insertLink">
         <label>
             URL
-            <input ref="url" type="text" style="width: 40%" v-model="url">
+            <input ref="url" @click="focusInput('url')" type="text" style="width: 40%" v-model="url">
         </label>
         <label>
             Link Title
-            <input type="text" style="width: 40%" v-model="title">
+            <input ref="title" @click="focusInput('title')" type="text" style="width: 40%" v-model="title">
         </label>
 
         <button type="submit">Insert</button>
@@ -30,10 +30,19 @@ export default {
     },
     methods: {
         insertLink(){
-            bus.emit("exec", "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
+            const name = this.$parent.$parent.name;
+            bus.emit(`exec${name ? `_${name}` : ''}`, "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
             this.url = "";
             this.title = "";
-        }
+            this.$parent.closeDashboard();
+        },
+        focusInput(elem) {
+            if (this.focused) {
+                this.$refs[this.focused].blur();
+            }
+            this.$refs[elem].focus();
+            this.focused = elem;
+        },
     },
 
     created () {

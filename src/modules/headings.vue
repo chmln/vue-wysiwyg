@@ -15,8 +15,9 @@ export default {
 
     methods: {
         insertHeading(e){
+            const name = this.$parent.$parent.name;
             this.$parent.closeDashboard();
-            bus.emit("exec", "formatBlock", e.target.textContent);
+            bus.emit(`exec${name ? `_${name}` : ''}`, "formatBlock", e.target.textContent);
         }
     }
 };

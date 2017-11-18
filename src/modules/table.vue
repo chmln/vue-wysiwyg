@@ -38,8 +38,8 @@ export default {
                 table += "</tr>";
             }
             table += "</tbody></table>";
-
-            bus.emit("exec", "insertHTML", table);
+          const name = this.$parent.$parent.name;
+          bus.emit(`exec${name ? `_${name}` : ''}`, "insertHTML", table);
             //this.$parent.execCommand("insertHTML", table)
         }
     }
