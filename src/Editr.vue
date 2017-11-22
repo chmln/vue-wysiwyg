@@ -121,8 +121,9 @@ export default {
         },
 
         exec: function(cmd, arg){
-            this.$refs.content.focus();
+            this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
+            this.selection = null;
 
             this.$nextTick(() => {
                 this.$emit("html", this.$refs.content.innerHTML);
@@ -141,6 +142,11 @@ export default {
             this.$emit("html", this.$refs.content.innerHTML);
         }, 300),
 
+        onContentBlur () {
+          // save focus to restore it later
+          this.selection = this.saveSelection();
+        },
+
         syncHTML () {
             if (this.html !== this.$refs.content.innerHTML)
                 this.innerHTML = this.html;
@@ -152,12 +158,14 @@ export default {
 
         this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
-
+        this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
         bus.on("exec", this.exec);
     },
 
     beforeDestroy () {
       this.unwatch();
+      document.removeEventListener("click", this.onDocumentClick);
+      this.$refs.content.removeEventListener("blur", this.onContentBlur);
     }
 }
 </script>
