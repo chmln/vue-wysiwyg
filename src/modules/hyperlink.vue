@@ -10,7 +10,6 @@
         </label>
 
         <button type="submit">Insert</button>
-        {{url }}
     </form>
 
 </template>
@@ -25,12 +24,13 @@ export default {
     data(){
         return {
             url: "",
-            title: ""
+            title: "",
         }
     },
     methods: {
         insertLink(){
             bus.emit("exec", "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
+            this.$parent.closeDashboard();
             this.url = "";
             this.title = "";
         }
@@ -42,6 +42,7 @@ export default {
                 this.$refs.url.focus();
             });
         });
+
     }
 };
 </script>
