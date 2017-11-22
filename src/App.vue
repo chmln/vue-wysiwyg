@@ -11,7 +11,7 @@ export default {
       msg: `<p>Welcome to <b>vue-wysiwyg</b>!</p>
       <p>
         <br>
-        <img src="https://az616578.vo.msecnd.net/files/2016/10/01/6361089356481199681182863541_horse%20riding%20POV.gif">
+        <img src="https://static.pexels.com/photos/177809/pexels-photo-177809.jpeg">
       </p>
       <br>
       <p>
