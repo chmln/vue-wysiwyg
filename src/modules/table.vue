@@ -1,12 +1,12 @@
 <template>
-    <form @submit.prevent="insertTable">
+    <form @submit.prevent="insertTable" class="form">
         <label>
-            rows
-            <input type="number" style="width: 60px" maxlength="2" min="2" v-model="rows">
+            <div>Rows</div>
+            <input type="number" style="width: 60px"  min="2" v-model="rows">
         </label>
         <label>
-            cols
-            <input type="number" style="width: 60px" maxlength="2" min="2" v-model="cols">
+            <div>Columns</div>
+            <input type="number" style="width: 60px"  min="2" v-model="cols">
         </label>
 
         <button type="submit">Insert</button>
@@ -28,21 +28,22 @@ export default {
     },
     methods: {
         insertTable(){
-            // temp
-            let table = "<table><tbody>"
-            for (let i = 0; i < this.rows; i++) {
-                table += "<tr>";
-                for (let j = 0; j < this.cols; j++) {
-                    table += "<td style='padding: 8px; line-height: 1.42857; vertical-align: top; border: 1px solid #999'>&nbsp;</td>"
-                }
-                table += "</tr>";
-            }
-            table += "</tbody></table>";
+            const rows = (
+              "<tr>" + "<td style='padding: 8px; line-height: 1.42857; vertical-align: top; border: 1px solid #999'>&nbsp;</td>".repeat(this.cols) + "</tr>").repeat(this.rows);
 
-            bus.emit("exec", "insertHTML", table);
-            //this.$parent.execCommand("insertHTML", table)
+            bus.emit("exec", "insertHTML", `<table><tbody>${rows}</tbody></table>`);
+
         }
     }
 };
 
 </script>
+<style lang="stylus" scoped>
+.form
+  display: flex;
+  align-content: flex-end;
+
+  label
+    margin-right 1rem
+
+</style>
