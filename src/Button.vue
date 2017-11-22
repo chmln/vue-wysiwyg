@@ -1,12 +1,12 @@
 <template lang="pug">
-div(@mousedown="onBtnClick", @exec="onExec(arguments[0])")
+div(@mousedown="onBtnClick")
 	a(:class="'vw-btn-'+module.name", v-html="module.icon")
 
 	.dashboard(
 		v-show="showDashboard",
 		ref="dashboard"
 	)
-		component(v-if="module.render", v-once, ref="moduleDashboard", :is="module", @exec="onExec")
+		component(v-if="module.render", v-once, ref="moduleDashboard", :is="module")
 
 </template>
 <script>
@@ -31,9 +31,6 @@ export default {
 		},
 
 		onBtnClick($event, action, arg) {
-			$event.preventDefault();
-
-			this.$parent.saveSelection();
 			if (
 				this.module.render &&
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
@@ -48,12 +45,6 @@ export default {
 
 			if (action)
 				this.$parent.exec(action, arg);
-		},
-
-		onExec (cmd, args) {
-			this.$parent.restoreSelection();
-			this.$parent.exec(cmd, args);
-			this.showDashboard = false;
 		}
 	}
 }
