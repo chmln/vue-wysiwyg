@@ -15,7 +15,9 @@
   "style": "dist/vueWysiwyg.css",
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "rm -r dist/* || true && BABEL_ENV=production node build/build.js"
+    "build": "npm run build:prod",
+    "build:demo": "BABEL_ENV=production BUILD=demo node build/build.js",
+    "build:prod": "rm -f dist/* || true && BABEL_ENV=production BUILD=prod node build/build.js"
   },
   "dependencies": {
     "debounce": "^1.1.0",
