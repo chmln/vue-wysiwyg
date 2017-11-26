@@ -5,7 +5,7 @@
             v-for="module in modules",
             :module="module",
             :key="module.name",
-            @exec="exec(arguments[0], arguments[1])",
+
             :ref="'btn-'+module.name",
             :title="module.title || ''"
         )
@@ -159,7 +159,6 @@ export default {
         this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
         this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
-        bus.on("exec", this.exec);
     },
 
     beforeDestroy () {

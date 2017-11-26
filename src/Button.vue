@@ -6,7 +6,14 @@ div(@mousedown="onBtnClick")
 		v-show="showDashboard",
 		ref="dashboard"
 	)
-		component(v-if="module.render", v-once, ref="moduleDashboard", :is="module")
+		component(
+      v-if="module.render",
+      v-once,
+      ref="moduleDashboard",
+      :is="module",
+      @exec="exec",
+      :uid="uid"
+    )
 
 </template>
 <script>
@@ -17,9 +24,15 @@ export default {
 
 	data () {
 		return {
-			showDashboard: false
+			showDashboard: false,
 		}
 	},
+
+  computed: {
+    uid () {
+      return this.$parent._uid
+    }
+  },
 
 	methods: {
 		closeDashboard () {
@@ -30,13 +43,17 @@ export default {
 			this.showDashboard = true;
 		},
 
+    exec (...args) {
+      this.$parent.exec(...args)
+    },
+
 		onBtnClick($event, action, arg) {
 			if (
 				this.module.render &&
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
 			) {
 				this.showDashboard = !this.showDashboard;
-				bus.emit((this.showDashboard ? "show" : "hide") + "_dashboard_" + this.module.name);
+				bus.emit(`${this.uid}_${this.showDashboard ? "show" : "hide"}_dashboard_${this.module.name}`);
 				return;
 			}
 

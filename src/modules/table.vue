@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import bus from 'src/bus.js';
+// import bus from 'src/bus.js';
 
 export default {
     name: "table",
@@ -31,7 +31,7 @@ export default {
             const rows = (
               "<tr>" + "<td style='padding: 8px; line-height: 1.42857; vertical-align: top; border: 1px solid #999'>&nbsp;</td>".repeat(this.cols) + "</tr>").repeat(this.rows);
 
-            bus.emit("exec", "insertHTML", `<table><tbody>${rows}</tbody></table>`);
+            this.$emit("exec", "insertHTML", `<table><tbody>${rows}</tbody></table>`);
 
         }
     }
