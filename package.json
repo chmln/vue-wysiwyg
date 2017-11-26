@@ -20,8 +20,7 @@
   "dependencies": {
     "debounce": "^1.1.0",
     "vue": "^2.5.5",
-    "vue2-dropzone": "^3.0.0",
-    "wolfy87-eventemitter": "^5.2.4"
+    "vue2-dropzone": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
@@ -56,7 +55,7 @@
     "vue-template-compiler": "^2.5.5",
     "webpack": "^3.8.1",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-middleware": "^1.12.1",
     "webpack-hot-middleware": "^2.20.0",
     "webpack-merge": "^4.1.1"
   },
