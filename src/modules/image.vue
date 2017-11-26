@@ -51,7 +51,6 @@ export default {
         },
 
         fileAdded (file) {
-          console.log(file)
             // if no upload url is defined, insert image with base64 src
             if (file && this.uploadURL !== "None")
                 return;
