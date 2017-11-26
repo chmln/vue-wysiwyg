@@ -1,7 +1,6 @@
 <template lang="pug">
 .wrapper
-  div(v-for="article in articles")
-    wysiwyg(v-model="article.content")
+  wysiwyg(v-model="msg")
 </template>
 
 <script>
@@ -9,10 +8,44 @@ export default {
   name: 'app',
   data () {
     return {
-      articles: [
-        { content: "content1" },
-        { content: "content2"}
-      ]
+      msg: `<p>Welcome to <b>vue-wysiwyg</b>!</p>
+      <p>
+        <br>
+        <img src="https://static.pexels.com/photos/177809/pexels-photo-177809.jpeg">
+      </p>
+      <br>
+      <p>
+        The editor is quite fast and lightweight. Elements are minimally styled.
+      </p>
+      <br>
+      <p>
+      <table>
+        <thead>
+        <tr>
+          <th>Numbered lists:</th>
+          <th>Non-numbered lists:</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+
+            <ol>
+              <li>Item #1</li>
+              <li>Item #2</li>
+            </ol>
+          </td>
+          <td>
+            <ul>
+              <li>Item #1</li>
+              <li>Item #2</li>
+            </ul>
+          </td>
+        </tr>
+        </tbody>
+        </table>
+      </p>
+      `
     }
   }
 }
