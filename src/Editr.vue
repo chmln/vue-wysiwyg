@@ -120,7 +120,7 @@ export default {
             }
         },
 
-        exec: function(cmd, arg){
+        exec (cmd, arg){
             this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
             this.selection = null;
@@ -138,7 +138,7 @@ export default {
             }
         },
 
-        onInput: debounce(function (e){
+        onInput: debounce(() => {
             this.$emit("html", this.$refs.content.innerHTML);
         }, 300),
 
