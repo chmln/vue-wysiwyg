@@ -138,7 +138,7 @@ export default {
             }
         },
 
-        onInput: debounce(() => {
+        onInput: debounce(function() {
             this.$emit("html", this.$refs.content.innerHTML);
         }, 300),
 
