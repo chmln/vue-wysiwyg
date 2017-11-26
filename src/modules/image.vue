@@ -3,6 +3,8 @@
         :options="options"
         :id="_uid+'vwdropzone'"
         ref="dropzone"
+        @vdropzone-success="fileUploaded"
+        @vdropzone-file-added="fileAdded"
         >
     </dropzone>
 </template>
@@ -30,15 +32,13 @@ export default {
         options () {
           return {
             // custom dropzone options
-            //options: bus.options.image.dropzoneOptions,
+            options: bus.options.image.dropzoneOptions,
 
             // vue2-dropzone config
             id: `${this._uid}vwdropzone`,
             url: this.uploadURL,
             autoProcessQueue: this.uploadURL !== 'None',
             dictDefaultMessage: `<i class="fa">${UPLOAD_ICON}</i><br>Click here to upload...`,
-            "vdropzone-success": this.fileUploaded,
-            "vdropzone-file-added": this.fileAdded,
 
           }
         }
@@ -51,6 +51,7 @@ export default {
         },
 
         fileAdded (file) {
+          console.log(file)
             // if no upload url is defined, insert image with base64 src
             if (file && this.uploadURL !== "None")
                 return;
