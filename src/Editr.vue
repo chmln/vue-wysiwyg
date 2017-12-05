@@ -172,95 +172,74 @@ $offwhite = #f6f6f6
 $buttonWidth = 8vw
 $buttonHeight = 32px
 $svgSize = 16px
-
 .editr
     border 1px solid darken($offwhite, 7.5%)
     width 100%
-
 .editr--toolbar
     background $offwhite
     border-bottom 1px solid darken($offwhite, 7.5%)
     position relative
     display flex
     height $buttonHeight
-
-  a
-      display inline-block
-      width $buttonWidth
-      max-width 32px
-      height $buttonHeight
-      color #333
-      fill #333
-      cursor pointer
-      text-align center
-      line-height 1
-
-      &:hover
-          background alpha(black, 0.1)
-
-      &:active
-          background alpha(black, 0.2)
-
-      svg
-          width $svgSize
-          height $svgSize
-          margin (($buttonHeight - $svgSize)/2) auto
-
-          path
-              fill inherit
-
-      &.vw-btn-separator
-          width 1px
-          margin 0 10px
-
-          &:hover
-              background initial
-              cursor default
-
-        i
-            border-left 1px solid alpha(black, 0.1)
-            height 100%
-            position absolute
+    a
+        display inline-block
+        width $buttonWidth
+        max-width 32px
+        height $buttonHeight
+        color #333
+        fill #333
+        cursor pointer
+        text-align center
+        line-height 1
+        &:hover
+            background alpha(black, 0.1)
+        &:active
+            background alpha(black, 0.2)
+        svg
+            width $svgSize
+            height $svgSize
+            margin (($buttonHeight - $svgSize)/2) auto
+            path
+                fill inherit
+        &.vw-btn-separator
             width 1px
-
-  .dashboard
-      width 100%
-      position absolute
-      top 32px
-      left 0
-      text-align left
-      padding 0.5rem 1rem
-      background alpha(white, 0.95)
-      border 1px solid $offwhite
-
-
-
+            margin 0 10px
+            &:hover
+                background initial
+                cursor default
+            i
+                border-left 1px solid alpha(black, 0.1)
+                height 100%
+                position absolute
+                width 1px
+    .dashboard
+        width 100%
+        position absolute
+        top 32px
+        left 0
+        text-align left
+        padding 0.5rem 1rem
+        background alpha(white, 0.95)
+        border 1px solid $offwhite
 .editr--content
     min-height 150px
     padding 0.75rem 0.5rem
     line-height 1.33
     font-family inherit
     color inherit
-
-  &[contenteditable=true]:empty:before
-      content: attr(placeholder);
-      color alpha(black, 0.3)
-      display: block; /* For Firefox */
-
-  img
-      max-width 100%
-
-  table
-      width 100%
-
-      th
-          text-align left
-
-  &:focus
-      outline 0
-
-  ul, ol
-      li
-          list-style-position: inside;
-
+    &[contenteditable=true]:empty:before
+        content: attr(placeholder);
+        color alpha(black, 0.3)
+        display: block; /* For Firefox */
+    img
+        max-width 100%
+    table
+        width 100%
+        th
+            text-align left
+    &:focus
+        outline 0
+    ul, ol
+        li
+            list-style-position: inside;
 </style>
