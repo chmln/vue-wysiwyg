@@ -120,8 +120,8 @@ export default {
             }
         },
 
-        exec (cmd, arg){
-            this.selection && this.restoreSelection(this.selection);
+        exec (cmd, arg, sel){
+            sel !== false && this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
             this.selection = null;
 
