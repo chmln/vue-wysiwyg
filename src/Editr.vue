@@ -2,12 +2,12 @@
 .editr
     .editr--toolbar
         Btn(
-            v-for="module in modules",
+            v-for="(module,i) in modules",
             :module="module",
-            :key="module.name",
+            :key="module.title + i",
 
-            :ref="'btn-'+module.name",
-            :title="module.title || ''"
+            :ref="'btn-'+module.title",
+            :title="module.description || ''"
         )
 
     .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
@@ -72,7 +72,7 @@ export default {
     computed: {
         modules: function() {
             if (bus.options.hideModules)
-                return modules.filter(m => !bus.options.hideModules[m.name]);
+                return modules.filter(m => !bus.options.hideModules[m.title]);
             return modules;
         },
 
@@ -132,7 +132,7 @@ export default {
 
         onDocumentClick (e) {
             for (let i = 0; i < this.btnsWithDashboards.length; i++) {
-                const btn = this.$refs[`btn-${this.btnsWithDashboards[i].name}`][0];
+                const btn = this.$refs[`btn-${this.btnsWithDashboards[i].title}`][0];
                 if (btn && btn.showDashboard && !btn.$el.contains(e.target))
                     btn.closeDashboard();
             }

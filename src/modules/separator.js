@@ -1,4 +1,4 @@
 module.exports = {
-	name: "separator",
+	title: "separator",
 	icon: "<i class='separator'></i>"
 }

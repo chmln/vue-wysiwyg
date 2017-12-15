@@ -1,6 +1,6 @@
 <template lang="pug">
 div(@mousedown="onBtnClick")
-	a(:class="'vw-btn-'+module.name", v-html="module.icon")
+	a(:class="'vw-btn-'+module.title", v-html="module.icon")
 
 	.dashboard(
 		v-show="showDashboard",
@@ -53,7 +53,7 @@ export default {
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
 			) {
 				this.showDashboard = !this.showDashboard;
-				bus.emit(`${this.uid}_${this.showDashboard ? "show" : "hide"}_dashboard_${this.module.name}`);
+				bus.emit(`${this.uid}_${this.showDashboard ? "show" : "hide"}_dashboard_${this.module.title}`);
 				return;
 			}
 
