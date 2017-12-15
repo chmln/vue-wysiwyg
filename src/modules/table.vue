@@ -32,6 +32,7 @@ export default {
               "<tr>" + "<td style='padding: 8px; line-height: 1.42857; vertical-align: top; border: 1px solid #999'>&nbsp;</td>".repeat(this.cols) + "</tr>").repeat(this.rows);
 
             this.$emit("exec", "insertHTML", `<table><tbody>${rows}</tbody></table>`);
+            this.$parent.closeDashboard()
 
         }
     }

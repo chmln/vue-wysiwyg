@@ -61,7 +61,7 @@ export default {
 			arg = arg || this.module.actionArgs;
 
 			if (action)
-				this.$parent.exec(action, arg);
+				this.exec(action, arg, false);
 		}
 	}
 }
