@@ -21,11 +21,11 @@
   },
   "dependencies": {
     "debounce": "^1.1.0",
-    "vue": "^2.5.5",
-    "vue2-dropzone": "^3.0.0"
+    "vue": "^2.5.11",
+    "vue2-dropzone": "^3.0.3"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.6",
+    "autoprefixer": "^7.2.3",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -52,13 +52,13 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.6.2",
-    "vue-loader": "^13.5.0",
+    "vue-loader": "^13.5.1",
     "vue-style-loader": "^3.0.3",
-    "vue-template-compiler": "^2.5.5",
-    "webpack": "^3.8.1",
+    "vue-template-compiler": "^2.5.11",
+    "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-middleware": "^1.12.1",
-    "webpack-hot-middleware": "^2.20.0",
+    "webpack-dev-middleware": "^2.0.1",
+    "webpack-hot-middleware": "^2.21.0",
     "webpack-merge": "^4.1.1"
   },
   "engines": {
