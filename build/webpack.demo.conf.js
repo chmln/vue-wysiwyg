@@ -10,13 +10,15 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = merge(baseWebpackConfig, {
   module: {
-    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
+    rules: utils.styleLoaders({ sourceMap: false })
   },
   // cheap-module-eval-source-map is faster for development
   devtool: false,
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': config.dev.env
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
