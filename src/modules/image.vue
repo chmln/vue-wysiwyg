@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import dropzone from 'vue2-dropzone';
+import Dropzone from 'vue2-dropzone';
 import bus from 'src/bus.js';
 import 'vue2-dropzone/dist/vue2Dropzone.css'
 
