@@ -46,15 +46,16 @@ In your components:
 }
 ```
 Available Modules:
-- bold
-- headings
-- hyperlink
-- image
-- italic
-- list_ordered
-- list_unordered
-- removeFormat
-- table
+ - bold
+ - italic
+ - underline
+ - headings
+ - link
+ - orderedList
+ - unorderedList
+ - image
+ - table
+ - removeFormat
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`
