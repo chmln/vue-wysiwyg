@@ -4,6 +4,7 @@
         Btn(
             v-for="(module,i) in modules",
             :module="module",
+            :options="mergedOptions",
             :key="module.title + i",
 
             :ref="'btn-'+module.title",
@@ -58,6 +59,7 @@ export default {
             type: String,
             default: "Enter text..."
         },
+        options: Object
     },
 
 
@@ -70,9 +72,13 @@ export default {
     },
 
     computed: {
+        mergedOptions () {
+          return { ...bus.options, ...this.options}
+        },
+
         modules: function() {
-            if (bus.options.hideModules)
-                return modules.filter(m => !bus.options.hideModules[m.title]);
+            if (this.mergedOptions.hideModules)
+                return modules.filter(m => !this.mergedOptions.hideModules[m.title]);
             return modules;
         },
 

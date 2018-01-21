@@ -13,6 +13,7 @@ div(@mousedown="onBtnClick")
       :is="module",
       @exec="exec",
       :uid="uid"
+      :options="options"
     )
 
 </template>
@@ -20,7 +21,7 @@ div(@mousedown="onBtnClick")
 import bus from 'src/bus.js';
 
 export default {
-	props: ["module"],
+	props: ["module", "options"],
 
 	data () {
 		return {
