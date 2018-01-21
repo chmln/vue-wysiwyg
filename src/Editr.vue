@@ -151,6 +151,10 @@ export default {
           this.emit();
         }, 300),
 
+        onFocus () {
+          this.exec("defaultParagraphSeparator", this.mergedOptions.paragraphSeparator)
+        },
+
         onContentBlur () {
           // save focus to restore it later
           this.selection = this.saveSelection();
@@ -165,9 +169,12 @@ export default {
     mounted () {
         this.unwatch = this.$watch("html", this.syncHTML, { immediate: true});
 
-        this.$refs.content.addEventListener("input", this.onInput);
         document.addEventListener("click", this.onDocumentClick);
+
+        this.$refs.content.addEventListener("focus", this.onFocus);
+        this.$refs.content.addEventListener("input", this.onInput);
         this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
+
     },
 
     beforeDestroy () {

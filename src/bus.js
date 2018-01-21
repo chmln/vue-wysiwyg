@@ -23,7 +23,8 @@ emitter.options = {
         dropzoneOptions: {}
     },
 
-    hideModules: {}
+    hideModules: {},
+    paragraphSeparator: "div"
 }
 
 export default emitter;
