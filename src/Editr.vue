@@ -180,7 +180,10 @@ export default {
     beforeDestroy () {
       this.unwatch();
       document.removeEventListener("click", this.onDocumentClick);
+
       this.$refs.content.removeEventListener("blur", this.onContentBlur);
+      this.$refs.content.removeEventListener("input", this.onInput);
+      this.$refs.content.removeEventListener("focus", this.onFocus);
     }
 }
 </script>
