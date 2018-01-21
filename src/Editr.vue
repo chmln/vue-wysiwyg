@@ -88,7 +88,6 @@ export default {
             },
 
             set (html) {
-              console.log(html)
                 if (this.$refs.content.innerHTML !== html) {
                     this.$refs.content.innerHTML = html;
                 }
@@ -126,9 +125,7 @@ export default {
             document.execCommand(cmd, false, arg||"");
             this.selection = null;
 
-            this.$nextTick(() => {
-                this.$emit("html", this.$refs.content.innerHTML);
-            });
+            this.$nextTick(this.emit);
         },
 
         onDocumentClick (e) {
@@ -139,8 +136,13 @@ export default {
             }
         },
 
+        emit () {
+          this.$emit("html", this.$refs.content.innerHTML);
+          this.$emit("change", this.$refs.content.innerHTML);
+        },
+
         onInput: debounce(function() {
-            this.$emit("html", this.$refs.content.innerHTML);
+          this.emit();
         }, 300),
 
         onContentBlur () {
