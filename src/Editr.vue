@@ -88,7 +88,8 @@ export default {
             },
 
             set (html) {
-                if (this.innerHTML !== html) {
+              console.log(html)
+                if (this.$refs.content.innerHTML !== html) {
                     this.$refs.content.innerHTML = html;
                 }
             }
