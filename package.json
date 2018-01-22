@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "npm run build:prod",
-    "build:demo": "BABEL_ENV=production BUILD=demo node build/build.js",
+    "build:demo": "BABEL_ENV=production BUILD=demo DIR=gh-pages node build/build.js",
     "build:prod": "rm -rf dist/* && BABEL_ENV=production BUILD=prod node build/build.js"
   },
   "dependencies": {
