@@ -152,7 +152,7 @@ export default {
         }, 300),
 
         onFocus () {
-          this.exec("defaultParagraphSeparator", this.mergedOptions.paragraphSeparator)
+          document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
         },
 
         onContentBlur () {
