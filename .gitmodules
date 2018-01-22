@@ -1,4 +1,5 @@
-[submodule "gh-pages"]
-	path = gh-pages
+[submodule "demo"]
+	path = demo
 	url = git://github.com/chmln/vue-wysiwyg.git
+	branch = gh-pages
 
