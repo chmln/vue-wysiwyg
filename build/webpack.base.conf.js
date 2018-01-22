@@ -7,6 +7,8 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+console.log(config.build.assetsRoot)
+
 module.exports = {
   entry: {
     app: './src/main.js'
