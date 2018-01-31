@@ -3,8 +3,11 @@ import App from './App.vue';
 
 import wysiwyg from "./index.js";
 Vue.use(wysiwyg, {
-  hideModules: {
-    bold: false
+  hideModules: { "bold": true },
+  image: {
+    uploadURL: "http://localhost:3000/profile",
+    imageResKey: "url",
+    dropzoneOptions: {}
   }
 });
 

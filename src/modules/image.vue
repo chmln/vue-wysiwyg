@@ -47,8 +47,9 @@ export default {
 
     methods: {
         fileUploaded (file, r) {
+            const imagekey = bus.options.image.imageResKey;
             if (r)
-                this.$emit("exec", "insertHTML", `<img src=${r}>`);
+                this.$emit("exec", "insertHTML", `<img src=${r[imagekey]}>`);
         },
 
         fileAdded (file) {

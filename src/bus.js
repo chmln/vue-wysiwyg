@@ -20,6 +20,7 @@ const emitter = new Emitter();
 emitter.options = {
     image: {
         uploadURL: "None",
+        imageResKey: "url",
         dropzoneOptions: {}
     },
 
