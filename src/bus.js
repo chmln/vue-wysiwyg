@@ -24,6 +24,7 @@ emitter.options = {
     },
 
     hideModules: {},
+    customModles: [],
     paragraphSeparator: "div"
 }
 

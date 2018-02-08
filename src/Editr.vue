@@ -59,7 +59,7 @@ export default {
             type: String,
             default: "Enter text..."
         },
-        options: Object
+        options: {type: Object, default: {}}
     },
 
 
@@ -77,9 +77,16 @@ export default {
         },
 
         modules: function() {
-            if (this.mergedOptions.hideModules)
-                return modules.filter(m => !this.mergedOptions.hideModules[m.title]);
-            return modules;
+            let derivedModules = [];
+            if (this.mergedOptions.hideModules) {
+                derivedModules = modules.filter(m => !this.mergedOptions.hideModules[m.title]);
+            }else {
+                derivedModules = [...modules];
+            }
+            if (this.mergedOptions.customModules) {
+                derivedModules = derivedModules.concat(this.mergedOptions.customModules);
+            }
+            return derivedModules;
         },
 
         btnsWithDashboards: function () {
