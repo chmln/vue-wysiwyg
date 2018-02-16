@@ -1,21 +1,6 @@
-<template lang="pug">
-div(@mousedown="onBtnClick")
-	a(:class="'vw-btn-'+module.title", v-html="module.icon")
-
-	.dashboard(
-		v-show="showDashboard",
-		ref="dashboard"
-	)
-		component(
-      v-if="module.render",
-      v-once,
-      ref="moduleDashboard",
-      :is="module",
-      @exec="exec",
-      :uid="uid"
-      :options="options"
-    )
-
+<template>
+  <a :class="'vw-btn-'+module.title" tabindex="-1"
+    @mousedown="onBtnClick" v-html="module.icon"></a>
 </template>
 <script>
 import bus from 'src/bus.js';
@@ -37,32 +22,44 @@ export default {
 
 	methods: {
 		closeDashboard () {
-			this.showDashboard = false;
+      this.showDashboard = false;
+      // this.$emit('close');
 		},
 
 		openDashboard () {
-			this.showDashboard = true;
+
+      this.showDashboard = true;
+      const modalOptions = {
+        component: this.module,
+        title: this.module.dialogTitle || this.module.title,
+        small: this.module.dialogSize == 'small',
+        large: this.module.dialogSize == 'large',
+        componentOptions: {
+          options: this.options
+        }
+      };
+      if (this.module.modalButtons) {
+        modalOptions.buttons = this.module.modalButtons;
+      }
+      this.$emit('open', modalOptions);
 		},
 
     exec (...args) {
-      this.$parent.exec(...args)
+      this.$emit('exec', ...args);
     },
 
-		onBtnClick($event, action, arg) {
-			if (
-				this.module.render &&
-				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
-			) {
-				this.showDashboard = !this.showDashboard;
-				bus.emit(`${this.uid}_${this.showDashboard ? "show" : "hide"}_dashboard_${this.module.title}`);
-				return;
-			}
+		onBtnClick() {
+      if (this.module.render) {
+        this.openDashboard();
+      }else {
 
-			action = action || this.module.action;
-			arg = arg || this.module.actionArgs;
+        let action = this.module.action;
+        let arg = this.module.actionArgs;
 
-			if (action)
-				this.exec(action, arg, false);
+        if (action)
+          this.exec(action, arg, false);
+      }
+
 		}
 	}
 }
