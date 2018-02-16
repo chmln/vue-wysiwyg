@@ -1,17 +1,41 @@
 <template lang="pug">
 .editr
     .editr--toolbar
-        Btn(
-            v-for="(module,i) in modules",
-            :module="module",
-            :options="mergedOptions",
-            :key="module.title + i",
-
+        template(v-for="(module,i) in modules")
+          component(
+            :is="module",
+            class="item",
+            :class="'vw-btn-'+module.title",
+            v-if="module.inline",
+            @exec="exec",
+            tabindex="-1",
             :ref="'btn-'+module.title",
             :title="module.description || ''"
-        )
+          )
+          Btn(
+              v-else
+              :module="module",
+              :options="mergedOptions",
+             
+              @open="showDialog",
+              @exec="exec",
+              tabindex="-1",
+              @close="closeDialog",
+              :ref="'btn-'+module.title",
+              :title="module.description || ''"
+          )
 
-    .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
+    .editr--content(
+        ref="content",
+        contenteditable="true",
+        tabindex="1",
+        :placeholder="placeholder")
+    EditorDialog(
+        v-bind="dialog",
+        @close="closeDialog",
+        @exec="exec",
+        @cancel="closeDialog"
+    )
 
 </template>
 
@@ -23,7 +47,7 @@ import Btn from "./Button.vue";
 import bold from "./modules/bold.js";
 import italic from "./modules/italic.js";
 import underline from "./modules/underline.js";
-
+import format from './modules/format.vue';
 import headings from "./modules/headings.vue";
 import hyperlink from "./modules/hyperlink.vue";
 import list_ordered from "./modules/list_ordered.js";
@@ -36,13 +60,30 @@ import removeFormat from "./modules/removeFormat.js";
 
 import separator from "./modules/separator.js";
 
+import moduleDialog from './Dialog.vue';
+
 const modules = [
     bold, italic, underline, separator,
-    headings, hyperlink,
+    format, hyperlink,
     list_ordered, list_unordered, separator,
     image, table, separator,
     removeFormat
 ];
+
+const DEFAULT_DIALOG_VALUE = {
+  value: false,
+  title: '',
+  component: {
+    template: ''
+  },
+  buttons: [
+    {
+      text: 'Close',
+      style: 'close',
+      action: 'close'
+    }
+  ]
+};
 
 export default {
     model: {
@@ -59,16 +100,20 @@ export default {
             type: String,
             default: "Enter text..."
         },
-        options: {type: Object, default: {}}
+        options: {type: Object, default() {
+          return {};
+        }}
     },
 
 
-    components: { Btn  },
+    components: { Btn, EditorDialog: moduleDialog  },
 
     data () {
         return {
-            selection: ""
-        }
+            selection: "",
+            dialog: Object.assign({}, DEFAULT_DIALOG_VALUE),
+            suspendSelectionSave: false
+        };
     },
 
     computed: {
@@ -109,6 +154,20 @@ export default {
     },
 
     methods: {
+        showDialog(args) {
+          if (this.dialog.value) {
+            return;
+          }
+          // this.saveSelection();
+          this.dialog = {value: true, ...args};
+        },
+        closeDialog() {
+          this.dialog = Object.assign({}, DEFAULT_DIALOG_VALUE);
+        },
+        performDialogAction(args) {
+          this.closeDialog();
+          this.exec(args.action, args.options, args.select);
+        },
         saveSelection() {
             if (window.getSelection) {
                 this.selection = window.getSelection();
@@ -134,19 +193,25 @@ export default {
         },
 
         exec (cmd, arg, sel){
+            console.log('Executing exec with %s: %s', cmd, arg);
+            // if (this.selection) {
+            //   this.restoreSelection(this.selection);
+            // }
             sel !== false && this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
+
             this.selection = null;
 
             this.$nextTick(this.emit);
         },
 
         onDocumentClick (e) {
-            for (let i = 0; i < this.btnsWithDashboards.length; i++) {
-                const btn = this.$refs[`btn-${this.btnsWithDashboards[i].title}`][0];
-                if (btn && btn.showDashboard && !btn.$el.contains(e.target))
-                    btn.closeDashboard();
-            }
+
+            // for (let i = 0; i < this.btnsWithDashboards.length; i++) {
+            //     const btn = this.$refs[`btn-${this.btnsWithDashboards[i].title}`][0];
+            //     if (btn && btn.showDashboard && !btn.$el.contains(e.target))
+            //         btn.closeDashboard();
+            // }
         },
 
         emit () {
@@ -155,16 +220,28 @@ export default {
         },
 
         onInput: debounce(function() {
+          // this.grabCurrentSelection();
           this.emit();
+
         }, 300),
 
         onFocus () {
-          document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
+          document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator);
+          // this.grabCurrentSelection();
+        },
+
+        grabCurrentSelection(e) {
+          this.selection = this.saveSelection();
         },
 
         onContentBlur () {
+          // if (this.suspendSelectionSave) {
+          //   return;
+          // }
           // save focus to restore it later
+          console.log('Saving selection');
           this.selection = this.saveSelection();
+          console.dir(this.selection);
         },
 
         syncHTML () {
@@ -174,23 +251,67 @@ export default {
     },
 
     mounted () {
+        // this.contentEventHandlers = {
+        //   'blur': (e) => {
+        //     this.grabCurrentSelection();
+        //   },
+        //   'paste': (e) => {
+        //     this.grabCurrentSelection();
+        //   },
+        //   'cut': (e) => {
+        //     this.grabCurrentSelection();
+        //   },
+        //   'keyup': (e) => {
+        //     this.grabCurrentSelection();
+        //   }
+        // };
         this.unwatch = this.$watch("html", this.syncHTML, { immediate: true});
 
-        document.addEventListener("click", this.onDocumentClick);
+        // document.addEventListener("click", this.onDocumentClick);
 
         this.$refs.content.addEventListener("focus", this.onFocus);
+
         this.$refs.content.addEventListener("input", this.onInput);
-        this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
+
+        // this.onContentBlur = this.onContentBlur.bind(this);
+
+        this.$refs.content.addEventListener("focus", this.onContentBlur, {capture : true, immediate: true});
+        this.$refs.content.addEventListener("keyup", this.onContentBlur, {capture : true, immediate: true});
+
+        // const events = Object.keys(this.contentEventHandlers);
+
+        // events.forEach((name) => {
+        //   this.$refs.content.addEventListener(name, this.contentEventHandlers[name], { capture: true });
+        // });
+
+    },
+
+    created() {
+      this.onInput = this.onInput.bind(this);
+      this.onFocus = this.onFocus.bind(this);
+
 
     },
 
     beforeDestroy () {
       this.unwatch();
-      document.removeEventListener("click", this.onDocumentClick);
+      // document.removeEventListener("click", this.onDocumentClick);
 
-      this.$refs.content.removeEventListener("blur", this.onContentBlur);
       this.$refs.content.removeEventListener("input", this.onInput);
+
       this.$refs.content.removeEventListener("focus", this.onFocus);
+
+      this.$refs.content.removeEventListener("focus", this.onContentBlur);
+      this.$refs.content.removeEventListener("keyup", this.onContentBlur);
+
+
+      // // const events = Object.keys(this.contentEventHandlers);
+
+      //  this.$refs.content.removeEventListener('blur', this.onContentBlur);
+
+      // events.forEach((name) => {
+      //   this.$refs.content.removeEventListener(name, this.contentEventHandlers[name]);
+      // });
     }
 }
 </script>
@@ -212,15 +333,14 @@ $svgSize = 16px
     display flex
     height $buttonHeight
 
-    a
+    a, .item
         display inline-block
-        width $buttonWidth
-        max-width 32px
+        
         height $buttonHeight
         color #333
         fill #333
         cursor pointer
-        text-align center
+       
         line-height 1
 
         &:hover
@@ -251,6 +371,12 @@ $svgSize = 16px
                 position absolute
                 width 1px
 
+    a {
+      width $buttonWidth
+      max-width 32px
+      text-align center
+    }
+    
     .dashboard
         width 100%
         position absolute
