@@ -22,9 +22,9 @@ emitter.options = {
         uploadURL: "None",
         dropzoneOptions: {}
     },
-
     hideModules: {},
-    paragraphSeparator: "div"
+    paragraphSeparator: "div",
+    maxHeight: undefined
 }
 
 export default emitter;

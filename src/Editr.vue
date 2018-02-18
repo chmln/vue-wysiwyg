@@ -174,7 +174,7 @@ export default {
         this.$refs.content.addEventListener("focus", this.onFocus);
         this.$refs.content.addEventListener("input", this.onInput);
         this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
-
+        this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
     },
 
     beforeDestroy () {
@@ -262,6 +262,7 @@ $svgSize = 16px
     line-height 1.33
     font-family inherit
     color inherit
+    overflow-y auto
 
     &[contenteditable=true]:empty:before
         content: attr(placeholder);
