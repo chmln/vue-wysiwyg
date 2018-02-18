@@ -48,7 +48,7 @@ export default {
       this.$parent.exec.apply(null, arguments)
     },
 
-		onBtnClick() {
+		onBtnClick ($event) {
 			if (this.module.action !== undefined)
 				this.exec.apply(null, this.module.action);
 
@@ -57,7 +57,7 @@ export default {
 			}
 
 			else if (
-				this.module.render &&
+				this.module.render !== undefined &&
 				(!this.$refs.dashboard || !this.$refs.dashboard.contains($event.target))
 			) {
 				this.showDashboard = !this.showDashboard;
