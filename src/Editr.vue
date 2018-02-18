@@ -77,9 +77,10 @@ export default {
         },
 
         modules: function() {
-            if (this.mergedOptions.hideModules)
-                return modules.filter(m => !this.mergedOptions.hideModules[m.title]);
-            return modules;
+            return modules.filter(
+                m => this.mergedOptions.hideModules === undefined
+                || !this.mergedOptions.hideModules[m.title]
+            ).concat(this.mergedOptions.customModules);
         },
 
         btnsWithDashboards: function () {
