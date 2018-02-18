@@ -250,7 +250,7 @@ $svgSize = 16px
         top 32px
         left 0
         text-align left
-        padding 0.5rem 1rem
+        padding 8px 16px
         background alpha(white, 0.95)
         border 1px solid $offwhite
 
@@ -258,7 +258,7 @@ $svgSize = 16px
 
 .editr--content
     min-height 150px
-    padding 0.75rem 0.5rem
+    padding 12px 8px 16px 8px
     line-height 1.33
     font-family inherit
     color inherit
@@ -273,9 +273,15 @@ $svgSize = 16px
 
     table
         width 100%
+        border-collapse collapse
 
         th
             text-align left
+
+        th, td
+            border 1px solid #dddddd
+            padding 2px
+
 
     &:focus
         outline 0
@@ -284,4 +290,11 @@ $svgSize = 16px
         li
             list-style-position: inside;
 
+@media screen and (max-width 320px)
+    .editr--toolbar
+        a
+            margin 0 2px
+
+        a.vw-btn-separator
+            display none
 </style>
