@@ -44,7 +44,6 @@
     "function-bind": "^1.1.1",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.4",
-    "http-server": "^0.11.1",
     "opn": "^5.2.0",
     "ora": "^1.3.0",
     "pug": "^2.0.0-rc.4",
