@@ -38,6 +38,8 @@ export default {
             // vue2-dropzone config
             id: `${this._uid}vwdropzone`,
             url: this.uploadURL,
+             acceptedFiles : 'image/*',
+            maxFilesize: 2,
             autoProcessQueue: this.uploadURL !== 'None',
             dictDefaultMessage: `<i class="fa">${UPLOAD_ICON}</i><br>Click here to upload...`,
 
@@ -58,7 +60,7 @@ export default {
 
             let reader = new FileReader();
 
-            reader.addEventListener("load", () => {
+     reader.addEventListener("load", () => {
                this.$emit("exec", "insertHTML", `<img src=${reader.result}>`);
             }, false);
 

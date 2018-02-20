@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "debounce": "^1.1.0",
+    "http-server": "^0.11.1",
     "vue": "^2.5.13",
     "vue2-dropzone": "^3.0.3"
   },
