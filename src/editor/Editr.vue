@@ -24,6 +24,11 @@ import bold from "./modules/bold.js";
 import italic from "./modules/italic.js";
 import underline from "./modules/underline.js";
 
+import alignLeft from "./modules/alignLeft.js"
+import alignCenter from "./modules/alignCenter.js"
+import alignRight from "./modules/alignRight.js"
+
+
 import headings from "./modules/headings.vue";
 import hyperlink from "./modules/hyperlink.vue";
 import code from "./modules/code.js";
@@ -39,6 +44,7 @@ import separator from "./modules/separator.js";
 
 const modules = [
     bold, italic, underline, separator,
+    alignLeft, alignCenter, alignRight, separator,
     headings, hyperlink, code,
     list_ordered, list_unordered, separator,
     image, table, separator,
@@ -246,13 +252,13 @@ $svgSize = 16px
 
         &.vw-btn-separator
             width 1px
-            margin 0 10px
+            margin 0 8px
 
             &:hover
                 background initial
                 cursor default
 
-            i
+            i.vw-separator
                 border-left 1px solid alpha(black, 0.1)
                 height 100%
                 position absolute
