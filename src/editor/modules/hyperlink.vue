@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import bus from 'src/bus.js';
+import bus from 'src/editor/bus.js';
 
 export default {
     title: "link",

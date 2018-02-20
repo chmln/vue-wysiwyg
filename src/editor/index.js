@@ -1,5 +1,5 @@
 import Editr from "./Editr.vue";
-import bus from 'src/bus.js';
+import bus from 'src/editor/bus.js';
 
 export default {
 	install: (Vue, userOptions = {}) => {
