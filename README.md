@@ -57,8 +57,12 @@ Available Modules:
  - bold
  - italic
  - underline
+ - alignLeft
+ - alignCenter
+ - alignRight
  - headings
  - link
+ - code
  - orderedList
  - unorderedList
  - image
