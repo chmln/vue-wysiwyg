@@ -6,7 +6,6 @@ module.exports = {
         const sel = utils.getHTMLOfSelection();
 
         return [
-            ["forwardDelete", undefined, false],
             ["insertHTML", `<pre>${sel}</pre>`, true],
         ]
     },
