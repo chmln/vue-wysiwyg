@@ -30,10 +30,7 @@ emitter.options = {
 
 emitter.utils = {
   getHTMLOfSelection () {
-    if (document.selection && document.selection.createRange) {
-      return document.selection.createRange().htmlText;
-    }
-    else if (window.getSelection) {
+    if (window.getSelection !== undefined) {
       const selection = window.getSelection();
       if (selection.rangeCount > 0) {
         const clonedSelection = selection.getRangeAt(0).cloneContents();
