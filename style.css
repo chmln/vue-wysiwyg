@@ -2,8 +2,7 @@
 * {
   margin:0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 .wrapper {
   max-width: 800px;
@@ -36,8 +35,6 @@ body {
   background: #f6f6f6;
   border-bottom: 1px solid #e4e4e4;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: 32px;
 }
@@ -68,13 +65,13 @@ body {
 }
 .editr--toolbar a.vw-btn-separator {
   width: 1px;
-  margin: 0 10px;
+  margin: 0 8px;
 }
 .editr--toolbar a.vw-btn-separator:hover {
   background: initial;
   cursor: default;
 }
-.editr--toolbar a.vw-btn-separator i {
+.editr--toolbar a.vw-btn-separator i.vw-separator {
   border-left: 1px solid rgba(0,0,0,0.1);
   height: 100%;
   position: absolute;
@@ -86,16 +83,17 @@ body {
   top: 32px;
   left: 0;
   text-align: left;
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
   background: rgba(255,255,255,0.95);
   border: 1px solid #f6f6f6;
 }
 .editr--content {
   min-height: 150px;
-  padding: 0.75rem 0.5rem;
+  padding: 12px 8px 16px 8px;
   line-height: 1.33;
   font-family: inherit;
   color: inherit;
+  overflow-y: auto;
 }
 .editr--content[contenteditable=true]:empty:before {
   content: attr(placeholder);
@@ -107,9 +105,15 @@ body {
 }
 .editr--content table {
   width: 100%;
+  border-collapse: collapse;
 }
 .editr--content table th {
   text-align: left;
+}
+.editr--content table th,
+.editr--content table td {
+  border: 1px solid #ddd;
+  padding: 2px;
 }
 .editr--content:focus {
   outline: 0;
@@ -118,13 +122,18 @@ body {
 .editr--content ol li {
   list-style-position: inside;
 }
-.form[data-v-ea2a38b0] {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: end;
-      align-content: flex-end;
+@media screen and (max-width: 320px) {
+.editr--toolbar a {
+    margin: 0 2px;
 }
-.form label[data-v-ea2a38b0] {
+.editr--toolbar a.vw-btn-separator {
+    display: none;
+}
+}
+.form[data-v-ebce4d12] {
+  display: flex;
+  align-content: flex-end;
+}
+.form label[data-v-ebce4d12] {
   margin-right: 1rem;
 }
