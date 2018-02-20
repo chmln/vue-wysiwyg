@@ -16,7 +16,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       extract: true
     })
   },
-  entry: [path.resolve('src/index.js')],
+  entry: [path.resolve('src/editor/index.js')],
   devtool: false,
   output: {
     path: config.build.assetsRoot,
@@ -51,23 +51,6 @@ var webpackConfig = merge(baseWebpackConfig, {
   ]
 })
 
-if (config.build.productionGzip) {
-  var CompressionWebpackPlugin = require('compression-webpack-plugin')
-
-  webpackConfig.plugins.push(
-    new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: new RegExp(
-        '\\.(' +
-        config.build.productionGzipExtensions.join('|') +
-        ')$'
-      ),
-      threshold: 10240,
-      minRatio: 0.8
-    })
-  )
-}
 
 if (config.build.bundleAnalyzerReport) {
   var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
