@@ -127,11 +127,27 @@ export default {
                     range.select();
             }
         },
-
+        clearSelection() {
+          this.selection = null;
+          const selection = null;
+          if (window.getSelection) {
+            selection = window.getSelection();
+          } else if (document.selection) {
+            selection = document.selection;
+          }
+          if (selection) {
+            if (selection.empty) {
+              selection.empty();
+            }
+            if (selection.removeAllRanges) {
+              selection.removeAllRanges();
+            }
+          }
+        },
         exec (cmd, arg, sel){
             sel !== false && this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
-            this.selection = null;
+            this.clearSelection();
 
             this.$nextTick(this.emit);
         },
