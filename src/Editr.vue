@@ -11,7 +11,7 @@
             :title="module.description || ''"
         )
 
-    .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
+    .editr--content(ref="content", contenteditable="true",id="editor", tabindex="1", :placeholder="placeholder")
 
 </template>
 
@@ -127,8 +127,8 @@ export default {
                     range.select();
             }
         },
-
-        exec (cmd, arg, sel){
+  exec (cmd, arg, sel){
+         document.getElementById( 'editor' ).focus();
             sel !== false && this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
             this.selection = null;

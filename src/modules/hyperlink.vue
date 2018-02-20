@@ -28,12 +28,12 @@ export default {
     data(){
         return {
             url: "",
-            title: "",
+            title: ""
         }
     },
     methods: {
         insertLink(){
-            this.$emit("exec", "insertHTML", `<a href='${this.url}'>${this.title}</a>`);
+            this.$emit("exec", "insertHTML", `<a target='_blank' href='${this.url}'>${this.title}</a>`);
             this.$parent.closeDashboard();
             this.url = "";
             this.title = "";
