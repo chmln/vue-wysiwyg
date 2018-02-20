@@ -129,17 +129,13 @@ export default {
         },
         clearSelection() {
           this.selection = null;
-          const selection = null;
-          if (window.getSelection) {
-            selection = window.getSelection();
-          } else if (document.selection) {
-            selection = document.selection;
-          }
+          const selection = window.getSelection();
+
           if (selection) {
-            if (selection.empty) {
+            if (selection.empty !== undefined) {
               selection.empty();
             }
-            if (selection.removeAllRanges) {
+            if (selection.removeAllRanges !== undefined) {
               selection.removeAllRanges();
             }
           }
