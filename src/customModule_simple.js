@@ -5,7 +5,6 @@ module.exports = {
 
         // wrap selection in custom html tags
         return [
-            ["forwardDelete", undefined, false],
             ["insertHTML", `<blockquote><b><i>${sel}</b></i></blockquote>`, true],
         ]
     },
