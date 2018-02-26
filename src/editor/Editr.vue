@@ -83,23 +83,24 @@ export default {
           return { ...bus.options, ...this.options}
         },
 
-        modules: function() {
-            const filteredModules = modules.filter(
+        modules () {
+            const customIcons = this.mergedOptions.iconOverrides;
+
+            return modules
+            .filter(
                 m => this.mergedOptions.hideModules === undefined
                 || !this.mergedOptions.hideModules[m.title]
-            ).concat(this.mergedOptions.customModules);
-
-            const filteredModulesWithIcons = filteredModules.map((filteredModule) => {
-              const iconOverrides = this.mergedOptions.iconOverrides
-              if (iconOverrides && iconOverrides[filteredModule.title]) {
-                filteredModule.icon = iconOverrides[filteredModule.title]
+            )
+            .map(mod => {
+              if (customIcons !== undefined && customIcons[mod.title] !== undefined) {
+                mod.icon = customIcons[mod.title];
               }
-              return filteredModule
+              return mod;
             })
-            return filteredModulesWithIcons
+            .concat(this.mergedOptions.customModules);
         },
 
-        btnsWithDashboards: function () {
+        btnsWithDashboards  () {
             if (this.modules)
                 return this.modules.filter(m => m.render);
             return [];
