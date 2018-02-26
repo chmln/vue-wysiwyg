@@ -49,6 +49,7 @@ export default {
     },
 
 		onBtnClick ($event) {
+			$event.preventDefault();
 			if (this.module.action !== undefined)
 				this.exec.apply(null, this.module.action);
 
