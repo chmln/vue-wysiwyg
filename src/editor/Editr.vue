@@ -121,7 +121,7 @@ export default {
 
     methods: {
         saveSelection() {
-            if (window.getSelection) {
+            if (window.getSelection !== undefined) {
                 this.selection = window.getSelection();
                 if (this.selection.getRangeAt && this.selection.rangeCount) {
                     return this.selection.getRangeAt(0);
@@ -134,7 +134,7 @@ export default {
 
         restoreSelection(range) {
             if (range) {
-                if (window.getSelection) {
+                if (window.getSelection !== undefined) {
                     this.selection = window.getSelection();
                     this.selection.removeAllRanges();
                     this.selection.addRange(range);
