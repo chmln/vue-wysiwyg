@@ -43,6 +43,10 @@ All keys are optional.
   // { [module]: boolean (set true to hide) }
   hideModules: { "bold": true },
 
+  // you can override icons too, if desired
+  // just keep in mind that you may need custom styles in your application to get everything to align
+  iconOverrides: { "bold": "<i class="your-custom-icon"></i>" },
+
   // if the image option is not set, images are inserted as base64
   image: {
     uploadURL: "/api/myEndpoint",

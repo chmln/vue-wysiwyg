@@ -84,10 +84,19 @@ export default {
         },
 
         modules: function() {
-            return modules.filter(
+            const filteredModules = modules.filter(
                 m => this.mergedOptions.hideModules === undefined
                 || !this.mergedOptions.hideModules[m.title]
             ).concat(this.mergedOptions.customModules);
+
+            const filteredModulesWithIcons = filteredModules.map((filteredModule) => {
+              const iconOverrides = this.mergedOptions.iconOverrides
+              if (iconOverrides && iconOverrides[filteredModule.title]) {
+                filteredModule.icon = iconOverrides[filteredModule.title]
+              }
+              return filteredModule
+            })
+            return filteredModulesWithIcons
         },
 
         btnsWithDashboards: function () {
