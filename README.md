@@ -61,9 +61,9 @@ Available Modules:
  - bold
  - italic
  - underline
- - alignLeft
- - alignCenter
- - alignRight
+ - justifyLeft
+ - justifyCenter
+ - justifyRight
  - headings
  - link
  - code
