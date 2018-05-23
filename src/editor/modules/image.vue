@@ -5,6 +5,7 @@
         ref="dropzone"
         @vdropzone-success="fileUploaded"
         @vdropzone-file-added="fileAdded"
+        @vdropzone-sending="sendingEvent"
         >
     </Dropzone>
 </template>
@@ -34,7 +35,7 @@ export default {
         dropzoneOptions () {
           return {
             // custom dropzone options
-            ...this.options.image.dropzoneOptions,
+            options: this.options.image.dropzoneOptions,
 
             // vue2-dropzone config
             id: `${this._uid}vwdropzone`,
@@ -64,6 +65,15 @@ export default {
             }, false);
 
             reader.readAsDataURL(file);
+        },
+
+        sendingEvent (f, r, formData) {
+          if (this.uploadURL === "None" || !this.options.image.requestParams)
+            return;
+
+          Object.keys(this.options.image.requestParams).forEach(key => {
+            formData.append(key, this.options.image.requestParams[key]);
+          });
         }
     },
 }
