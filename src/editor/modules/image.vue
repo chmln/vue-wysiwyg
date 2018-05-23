@@ -34,7 +34,7 @@ export default {
         dropzoneOptions () {
           return {
             // custom dropzone options
-            options: this.options.image.dropzoneOptions,
+            ...this.options.image.dropzoneOptions,
 
             // vue2-dropzone config
             id: `${this._uid}vwdropzone`,
