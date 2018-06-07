@@ -1,7 +1,7 @@
 {
-  "name": "vue-wysiwyg",
-  "version": "1.7.1",
-  "description": "A WYSIWYG HTML editor for Vue.js",
+  "name": "vue-wysiwyg-2",
+  "version": "1.7.2",
+  "description": "A WYSIWYG HTML editor for Vue.js - created by Gregory <gregory.mkv@gmail.com>",
   "keywords": [
     "vue",
     "vue2",
@@ -9,7 +9,7 @@
     "html",
     "editor"
   ],
-  "author": "Gregory <gregory.mkv@gmail.com>",
+  "author": "Gregory <gregory.mkv@gmail.com> + Andy <andyepx@gmail.com>",
   "license": "MIT",
   "main": "dist/vueWysiwyg.js",
   "style": "dist/vueWysiwyg.css",
