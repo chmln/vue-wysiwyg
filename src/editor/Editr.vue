@@ -13,6 +13,8 @@
 
     .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
 
+
+
 </template>
 
 <script>
@@ -70,48 +72,56 @@ export default {
     },
 
 
-    components: { Btn  },
+    components: {Btn},
 
-    data () {
+    data() {
         return {
             selection: ""
         }
     },
 
     computed: {
-        mergedOptions () {
-          return { ...bus.options, ...this.options}
+        mergedOptions() {
+            return {...bus.options, ...this.options}
         },
 
-        modules () {
+        modules() {
             const customIcons = this.mergedOptions.iconOverrides;
 
-            return modules
-            .filter(
+            const availableModules = modules.filter(
                 m => this.mergedOptions.hideModules === undefined
-                || !this.mergedOptions.hideModules[m.title]
-            )
-            .map(mod => {
-              if (customIcons !== undefined && customIcons[mod.title] !== undefined) {
-                mod.icon = customIcons[mod.title];
-              }
-              return mod;
-            })
-            .concat(this.mergedOptions.customModules);
+                    || !this.mergedOptions.hideModules[m.title]
+            ).map(mod => {
+                if (customIcons !== undefined && customIcons[mod.title] !== undefined) {
+                    mod.icon = customIcons[mod.title];
+                }
+                return mod;
+            }).concat(this.mergedOptions.customModules);
+
+            if (this.mergedOptions.modulesOrder.length > 0) {
+                return this.mergedOptions.modulesOrder.map(m => {
+                    const mm = availableModules.filter(x => x.title === m);
+                    if (mm.length) return mm[0];
+                    else return null;
+                }).filter(x => x !== null);
+            } else {
+                return availableModules;
+            }
+
         },
 
-        btnsWithDashboards  () {
+        btnsWithDashboards() {
             if (this.modules)
                 return this.modules.filter(m => m.render);
             return [];
         },
 
         innerHTML: {
-            get () {
+            get() {
                 return this.$refs.content.innerHTML;
             },
 
-            set (html) {
+            set(html) {
                 if (this.$refs.content.innerHTML !== html) {
                     this.$refs.content.innerHTML = html;
                 }
@@ -144,27 +154,27 @@ export default {
             }
         },
         clearSelection() {
-          this.selection = null;
-          const selection = window.getSelection();
+            this.selection = null;
+            const selection = window.getSelection();
 
-          if (selection) {
-            if (selection.empty !== undefined) {
-              selection.empty();
+            if (selection) {
+                if (selection.empty !== undefined) {
+                    selection.empty();
+                }
+                if (selection.removeAllRanges !== undefined) {
+                    selection.removeAllRanges();
+                }
             }
-            if (selection.removeAllRanges !== undefined) {
-              selection.removeAllRanges();
-            }
-          }
         },
-        exec (cmd, arg, sel){
+        exec(cmd, arg, sel) {
             sel !== false && this.selection && this.restoreSelection(this.selection);
-            document.execCommand(cmd, false, arg||"");
+            document.execCommand(cmd, false, arg || "");
             this.clearSelection();
 
             this.$nextTick(this.emit);
         },
 
-        onDocumentClick (e) {
+        onDocumentClick(e) {
             for (let i = 0; i < this.btnsWithDashboards.length; i++) {
                 const btn = this.$refs[`btn-${this.btnsWithDashboards[i].title}`][0];
                 if (btn && btn.showDashboard && !btn.$el.contains(e.target))
@@ -172,54 +182,54 @@ export default {
             }
         },
 
-        emit () {
-          this.$emit("html", this.$refs.content.innerHTML);
-          this.$emit("change", this.$refs.content.innerHTML);
+        emit() {
+            this.$emit("html", this.$refs.content.innerHTML);
+            this.$emit("change", this.$refs.content.innerHTML);
         },
 
-        onInput: debounce(function() {
-          this.emit();
+        onInput: debounce(function () {
+            this.emit();
         }, 300),
 
-        onFocus () {
-          document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
+        onFocus() {
+            document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
         },
 
-        onContentBlur () {
-          // save focus to restore it later
-          this.selection = this.saveSelection();
+        onContentBlur() {
+            // save focus to restore it later
+            this.selection = this.saveSelection();
         },
 
-        syncHTML () {
+        syncHTML() {
             if (this.html !== this.$refs.content.innerHTML)
                 this.innerHTML = this.html;
         }
     },
 
-    mounted () {
-        this.unwatch = this.$watch("html", this.syncHTML, { immediate: true});
+    mounted() {
+        this.unwatch = this.$watch("html", this.syncHTML, {immediate: true});
 
         document.addEventListener("click", this.onDocumentClick);
 
         this.$refs.content.addEventListener("focus", this.onFocus);
         this.$refs.content.addEventListener("input", this.onInput);
-        this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
+        this.$refs.content.addEventListener("blur", this.onContentBlur, {capture: true});
         this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
     },
 
-    beforeDestroy () {
-      this.unwatch();
-      document.removeEventListener("click", this.onDocumentClick);
+    beforeDestroy() {
+        this.unwatch();
+        document.removeEventListener("click", this.onDocumentClick);
 
-      this.$refs.content.removeEventListener("blur", this.onContentBlur);
-      this.$refs.content.removeEventListener("input", this.onInput);
-      this.$refs.content.removeEventListener("focus", this.onFocus);
+        this.$refs.content.removeEventListener("blur", this.onContentBlur);
+        this.$refs.content.removeEventListener("input", this.onInput);
+        this.$refs.content.removeEventListener("focus", this.onFocus);
     }
 }
 </script>
 
 <style lang="stylus">
-$offwhite = #f6f6f6
+    $offwhite = #F6F6F6
 $buttonWidth = 8vw
 $buttonHeight = 32px
 $svgSize = 16px
@@ -255,7 +265,7 @@ $svgSize = 16px
         svg
             width $svgSize
             height $svgSize
-            margin (($buttonHeight - $svgSize)/2) auto
+            margin (($buttonHeight - $svgSize) / 2) auto
 
             path
                 fill inherit
@@ -284,8 +294,6 @@ $svgSize = 16px
         background alpha(white, 0.95)
         border 1px solid $offwhite
 
-
-
 .editr--content
     min-height 150px
     padding 12px 8px 16px 8px
@@ -297,7 +305,8 @@ $svgSize = 16px
     &[contenteditable=true]:empty:before
         content: attr(placeholder);
         color alpha(black, 0.3)
-        display: block; /* For Firefox */
+        display: block;
+    /* For Firefox */
 
     img
         max-width 100%
@@ -310,9 +319,8 @@ $svgSize = 16px
             text-align left
 
         th, td
-            border 1px solid #dddddd
+            border 1px solid #DDDDDD
             padding 2px
-
 
     &:focus
         outline 0
