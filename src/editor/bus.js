@@ -23,6 +23,7 @@ emitter.options = {
         dropzoneOptions: {}
     },
     hideModules: {},
+    modulesOrder: [],
     paragraphSeparator: "div",
     maxHeight: undefined,
     customModules: [],
