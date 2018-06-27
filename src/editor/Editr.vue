@@ -11,7 +11,7 @@
             :title="module.description || ''"
         )
 
-    .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
+    .editr--content(ref="content", contenteditable="true", :tabindex="tabindex", :placeholder="placeholder")
 </template>
 
 <script>
@@ -64,6 +64,10 @@
             placeholder: {
                 type: String,
                 default: "Enter text..."
+            },
+            tabindex: {
+                type: Number,
+                default: 1
             },
             options: Object
         },
