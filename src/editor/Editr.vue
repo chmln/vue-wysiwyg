@@ -190,6 +190,16 @@ export default {
           this.selection = this.saveSelection();
         },
 
+        onPaste(e) {
+            e.preventDefault();
+
+             // get a plain representation of the clipboard
+            var text = e.clipboardData.getData("text/plain");
+
+            // insert that plain text text manually
+            document.execCommand("insertHTML", false, text);
+        },
+
         syncHTML () {
             if (this.html !== this.$refs.content.innerHTML)
                 this.innerHTML = this.html;
@@ -204,6 +214,11 @@ export default {
         this.$refs.content.addEventListener("focus", this.onFocus);
         this.$refs.content.addEventListener("input", this.onInput);
         this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
+
+        if (this.mergedOptions.forcePlainTextOnPaste === true) {
+            this.$refs.content.addEventListener("paste", this.onPaste);
+        }
+        
         this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
     },
 

@@ -54,7 +54,10 @@ All keys are optional.
   },
 
   // limit content height if you wish. If not set, editor size will grow with content.
-  maxHeight: "500px"
+  maxHeight: "500px",
+
+  // set to 'true' this will insert plain text without styling when you paste something into the editor.
+  forcePlainTextOnPaste: true
 }
 ```
 Available Modules:
