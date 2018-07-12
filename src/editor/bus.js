@@ -26,6 +26,7 @@ emitter.options = {
     modulesOrder: [],
     paragraphSeparator: "div",
     maxHeight: undefined,
+    pasteAsPlainText: false,
     customModules: [],
 }
 

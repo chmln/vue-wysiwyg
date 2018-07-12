@@ -217,11 +217,13 @@
             this.$refs.content.addEventListener("blur", this.onContentBlur, {capture: true});
             this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
 
-            this.$refs.content.addEventListener("paste", (e) => {
-                var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
-                e.preventDefault();
-                document.execCommand('insertText', false, bufferText);
-            });
+            if (this.mergedOptions.pasteAsPlainText) {
+                this.$refs.content.addEventListener("paste", (e) => {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                });
+            }
 
         },
 
