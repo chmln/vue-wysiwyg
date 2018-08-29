@@ -188,6 +188,7 @@ export default {
         onContentBlur () {
           // save focus to restore it later
           this.selection = this.saveSelection();
+          this.$emit("blur", this.$refs.content);
         },
 
         onPaste(e) {
