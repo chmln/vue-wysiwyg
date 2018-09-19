@@ -45,7 +45,7 @@ All keys are optional.
 
   // you can override icons too, if desired
   // just keep in mind that you may need custom styles in your application to get everything to align
-  iconOverrides: { "bold": "<i class="your-custom-icon"></i>" },
+  iconOverrides: { "bold": "<i class='your-custom-icon'></i>" },
 
   // if the image option is not set, images are inserted as base64
   image: {
