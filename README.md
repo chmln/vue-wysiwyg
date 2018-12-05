@@ -1,8 +1,10 @@
+Forked from [vue-wysiwyg](https://github.com/chmln/vue-wysiwyg)
+
 [![](https://user-images.githubusercontent.com/11352152/30252159-1bbb9cfe-963b-11e7-966c-b44116c74a86.png)](https://chmln.github.io/vue-wysiwyg/)
 
 
 ## Usage
-
+Works in IE11
 
 ### Install vue-wysiwyg
 

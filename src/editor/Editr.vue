@@ -181,6 +181,14 @@ export default {
           this.emit();
         }, 300),
 
+        onKeyDown: debounce(function() {
+          if (navigator.userAgent.indexOf('MSIE') || navigator.userAgent.indexOf('Trident')) {
+            setTimeout(() => {
+              this.emit();
+            }, this)
+          }
+        }, 300),
+
         onFocus () {
           document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
         },
@@ -213,6 +221,9 @@ export default {
 
         this.$refs.content.addEventListener("focus", this.onFocus);
         this.$refs.content.addEventListener("input", this.onInput);
+        this.$refs.content.addEventListener("keydown", this.onKeyDown);
+        this.$refs.content.addEventListener("cut", this.onKeyDown);
+        this.$refs.content.addEventListener("paste", this.onKeyDown);
         this.$refs.content.addEventListener("blur", this.onContentBlur, { capture: true });
 
         if (this.mergedOptions.forcePlainTextOnPaste === true) {
@@ -228,6 +239,9 @@ export default {
 
       this.$refs.content.removeEventListener("blur", this.onContentBlur);
       this.$refs.content.removeEventListener("input", this.onInput);
+      this.$refs.content.removeEventListener("keydown", this.onKeyDown);
+      this.$refs.content.removeEventListener("cut", this.onKeyDown);
+      this.$refs.content.removeEventListener("paste", this.onKeyDown);
       this.$refs.content.removeEventListener("focus", this.onFocus);
     }
 }
