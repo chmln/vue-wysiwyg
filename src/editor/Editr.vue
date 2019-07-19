@@ -23,6 +23,7 @@ import Btn from "./Button.vue";
 import bold from "./modules/bold.js";
 import italic from "./modules/italic.js";
 import underline from "./modules/underline.js";
+import strikeThrough from "./modules/strikeThrough.js";
 
 import alignLeft from "./modules/alignLeft.js"
 import alignCenter from "./modules/alignCenter.js"
@@ -43,7 +44,7 @@ import removeFormat from "./modules/removeFormat.js";
 import separator from "./modules/separator.js";
 
 const modules = [
-    bold, italic, underline, separator,
+    bold, italic, underline, strikeThrough, separator,
     alignLeft, alignCenter, alignRight, separator,
     headings, hyperlink, code,
     list_ordered, list_unordered, separator,
