@@ -2,11 +2,11 @@
     <form @submit.prevent="insertLink">
         <label>
             URL
-            <input ref="url" type="text" style="width: 40%" v-model="url">
+            <input ref="url" type="text" style="width: 40%" v-model="url" @click="focusUrl">
         </label>
         <label>
             Link Title
-            <input type="text" style="width: 40%" v-model="title">
+            <input type="text" style="width: 40%" v-model="title" @click="focusLinkTitle" ref="linkTitle">
         </label>
 
         <button type="submit">Insert</button>
@@ -37,13 +37,21 @@ export default {
             this.$parent.closeDashboard();
             this.url = "";
             this.title = "";
+        },
+
+        focusUrl() {
+            this.$refs.url.focus();
+        },
+
+        focusLinkTitle() {
+            this.$refs.linkTitle.focus();
         }
     },
 
     created () {
         bus.on(this.uid + "_show_dashboard_link", () => {
             this.$nextTick(() => {
-                this.$refs.url.focus();
+                this.focusUrl();
             });
         });
 
