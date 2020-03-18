@@ -1,7 +1,7 @@
 {
-  "name": "vue-wysiwyg",
-  "version": "1.7.1",
-  "description": "A WYSIWYG HTML editor for Vue.js",
+  "name": "@jardimihaly/vue-wysiwyg",
+  "version": "1.7.2",
+  "description": "A WYSIWYG HTML editor for Vue.js, with added localization option",
   "keywords": [
     "vue",
     "vue2",
