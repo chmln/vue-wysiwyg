@@ -6,7 +6,7 @@ Vue.use(wysiwyg, {
   hideModules: {
     bold: false,
   },
-  locale: english
+  locale: 'hu'
 });
 
 new Vue({
