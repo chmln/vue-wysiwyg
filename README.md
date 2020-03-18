@@ -57,7 +57,10 @@ All keys are optional.
   maxHeight: "500px",
 
   // set to 'true' this will insert plain text without styling when you paste something into the editor.
-  forcePlainTextOnPaste: true
+  forcePlainTextOnPaste: true,
+
+  // specify editor locale, if you don't specify this, the editor will default to english.
+  locale: 'hu'
 }
 ```
 Available Modules:
@@ -76,6 +79,10 @@ Available Modules:
  - table
  - removeFormat
  - separator
+
+Available Locales:
+ - english (default)
+ - hungarian
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`
