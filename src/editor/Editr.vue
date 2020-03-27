@@ -8,7 +8,7 @@
             :key="module.title + i",
 
             :ref="'btn-'+module.title",
-            :title="module.description || ''"
+            :title="mergedOptions.locale[module.title] || module.description || ''"
         )
 
     .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
