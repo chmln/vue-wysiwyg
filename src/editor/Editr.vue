@@ -11,7 +11,7 @@
             :title="mergedOptions.locale[module.title] || module.description || ''"
         )
 
-    .editr--content(ref="content", contenteditable="true", tabindex="1", :placeholder="placeholder")
+    .editr--content(ref="content", contenteditable="!disabled", tabindex="1", :placeholder="placeholder")
 
 </template>
 
@@ -65,6 +65,10 @@ export default {
         placeholder: {
             type: String,
             default: "Enter text..."
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         },
         options: Object
     },
