@@ -50,6 +50,9 @@ All keys are optional.
   // if the image option is not set, images are inserted as base64
   image: {
     uploadURL: "/api/myEndpoint",
+    requestParams: {
+      p1: 'I will be added to the request'
+    },
     dropzoneOptions: {}
   },
 
