@@ -85,6 +85,7 @@ Available Locales:
  - hungarian
  - dutch
  - german
+ - french
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`
