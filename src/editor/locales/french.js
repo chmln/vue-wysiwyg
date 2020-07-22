@@ -16,5 +16,5 @@ module.exports = {
     removeFormat: 'Supprimer la mise en forme.\nEfface les titres, le texte gras, italique, souligné, etc..',
     separator: null,
     table: 'Insérer un tableau',
-    underline: 'Souligner'
+    underline: 'Souligné'
 }
