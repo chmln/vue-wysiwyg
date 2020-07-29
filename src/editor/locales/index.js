@@ -9,7 +9,7 @@ import russian from "./russian";
 export default {
     dutch,
     hungarian,
-    german,
+    italian,
     english,
     portuguese,
     spanish,
