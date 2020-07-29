@@ -223,7 +223,7 @@ export default {
         if (this.mergedOptions.forcePlainTextOnPaste === true) {
             this.$refs.content.addEventListener("paste", this.onPaste);
         }
-        
+
         this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
     },
 
@@ -243,7 +243,6 @@ $offwhite = #f6f6f6
 $buttonWidth = 8vw
 $buttonHeight = 32px
 $svgSize = 16px
-
 .editr
     border 1px solid darken($offwhite, 7.5%)
     width 100%
