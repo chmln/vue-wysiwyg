@@ -1,6 +1,6 @@
 {
   "name": "@napopravku/vue-wysiwyg",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Fork of vue-wysiwyg: A WYSIWYG HTML editor for Vue.js",
   "keywords": [
     "vue",
