@@ -160,11 +160,13 @@ export default {
             }
           }
         },
-        exec (cmd, arg, sel){
+        exec (cmd, arg, sel, clearSelectionAfter){
             sel !== false && this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
-            this.clearSelection();
-
+            if (clearSelectionAfter !== false) {
+                this.clearSelection();
+            }
+            
             this.$nextTick(this.emit);
         },
 
