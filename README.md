@@ -81,10 +81,14 @@ Available Modules:
  - separator
 
 Available Locales:
- - english (default)
- - hungarian
- - dutch
- - german
+ - dutch (nl)
+ - english (en) **(default)**
+ - german (de)
+ - hungarian (hu)
+ - indonesia (id)
+ - italian (it)
+ - portuguese (pt)
+ - spanish (es)
 
 Note on the image upload API endpoint:
 - Image is uploaded by `multipart/form-data`
