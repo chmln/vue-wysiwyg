@@ -47,7 +47,7 @@
     "http-proxy-middleware": "^0.17.4",
     "opn": "^5.2.0",
     "ora": "^1.4.0",
-    "pug": "^2.0.0-rc.4",
+    "pug": "^3.0.1",
     "semver": "^5.5.0",
     "shelljs": "^0.8.1",
     "stylus": "^0.54.5",
