@@ -18,7 +18,7 @@
     "dev": "node build/dev-server.js",
     "build": "npm run build:prod",
     "build:demo": "BABEL_ENV=production BUILD=demo DIR=demo node build/build.js",
-    "build:prod": "rm -rf dist/* && BABEL_ENV=production BUILD=prod node build/build.js"
+    "build:prod": "rm -rf dist/* && node build/build.js"
   },
   "dependencies": {
     "debounce": "^1.1.0",
