@@ -1,5 +1,6 @@
 import dutch from "./dutch";
 import hungarian from "./hungarian";
+import german from "./german";
 import english from "./english";
 import portuguese from "./portuguese";
 import italian from "./italian";
@@ -11,5 +12,6 @@ export default {
     german,
     english,
     portuguese,
+    italian,
     spanish,
 }
