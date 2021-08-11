@@ -12,5 +12,6 @@ export default {
     german,
     english,
     portuguese,
+    italian,
     spanish,
 }
